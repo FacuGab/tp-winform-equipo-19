@@ -91,7 +91,7 @@ go
 insert into MARCAS values ('Samsung'), ('Apple'), ('Sony'), ('Huawei'), ('Motorola')
 insert into CATEGORIAS values ('Celulares'),('Televisores'), ('Media'), ('Audio')
 insert into ARTICULOS values ('S01', 'Galaxy S10', 'Una canoa cara', 1, 1, 69.999),
-('M03', 'Moto G Play 7ma Gen', 'Ya siete de estos?', 1, 5, 15699),
+('M03', 'Moto G Play 7ma Gen', 'Ya siete de estos?', 5, 1, 15699),
 ('S99', 'Play 4', 'Ya no se cuantas versiones hay', 3, 3, 35000),
 ('S56', 'Bravia 55', 'Alta tele', 3, 2, 49500),
 ('A23', 'Apple TV', 'lindo loro', 2, 3, 7850)
@@ -104,4 +104,27 @@ insert into imagenes values
 (4, 'https://intercompras.com/product_thumb_keepratio_2.php?img=images/product/SONY_KDL-55W950A.jpg&w=650&h=450'),
 (5, 'https://cnnespanol2.files.wordpress.com/2015/12/gadgets-mc3a1s-populares-apple-tv-2015-18.jpg?quality=100&strip=info&w=460&h=260&crop=1')
 
+
+-- POST CREACION --
+
+-- correccion de articulo mal cargado
+UPDATE ARTICULOS SET IdCategoria = 1, IdMarca = 5 WHERE Id = 2
+
+select * from CATEGORIAS
+select * from MARCAS
+select * from IMAGENES
 select * from ARTICULOS
+GO
+
+-- 
+
+SELECT Codigo, Nombre, A.Descripcion as Descripcion, C.Descripcion as Marca, M.Descripcion as Categoria, Precio, I.ImagenUrl 
+FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria 
+INNER JOIN MARCAS M on M.Id = A.IdMarca INNER JOIN IMAGENES I on I.IdArticulo = A.Id
+
+SELECT A.Codigo, A.Nombre, A.Descripcion as Descripcion, M.Descripcion as Marcas, C.Descripcion as Categorias, A.Precio
+FROM ARTICULOS A, MARCAS M, CATEGORIAS C
+WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id
+
+--
+
