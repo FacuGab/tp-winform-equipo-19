@@ -1,6 +1,0 @@
-E:\Documentos de Facundo\Programacion\C#\2023\TP Winforms\PrimerProyectoWinforms\PrimerProyectoWinforms\WinformApp\Dominio\bin\Debug\Dominio.dll
-E:\Documentos de Facundo\Programacion\C#\2023\TP Winforms\PrimerProyectoWinforms\PrimerProyectoWinforms\WinformApp\Dominio\bin\Debug\Dominio.pdb
-E:\Documentos de Facundo\Programacion\C#\2023\TP Winforms\PrimerProyectoWinforms\PrimerProyectoWinforms\WinformApp\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
-E:\Documentos de Facundo\Programacion\C#\2023\TP Winforms\PrimerProyectoWinforms\PrimerProyectoWinforms\WinformApp\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
-E:\Documentos de Facundo\Programacion\C#\2023\TP Winforms\PrimerProyectoWinforms\PrimerProyectoWinforms\WinformApp\Dominio\obj\Debug\Dominio.dll
-E:\Documentos de Facundo\Programacion\C#\2023\TP Winforms\PrimerProyectoWinforms\PrimerProyectoWinforms\WinformApp\Dominio\obj\Debug\Dominio.pdb
