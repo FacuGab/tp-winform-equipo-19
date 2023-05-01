@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 using Dominio;
 using AccesoDatos;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Negocio
 {
     public class NegocioArticulo
     {
-        //T VARIABLES:
+        //TODO: VARIABLES:
         private SqlDataReader lector = null;
         private Database datos;
         public List<Articulo> articulos;
 
-        //T METODOS:
+        //TODO: METODOS:
         // Leer Datos
         public List<Articulo> Leer()
         {
@@ -41,6 +42,7 @@ namespace Negocio
                     artAux.categoria = new Categoria(lector["Categoria"].ToString());
                     artAux.precio = Convert.ToDecimal(lector["Precio"]);
                     artAux.imagenes = new List<string> { lector["ImagenUrl"].ToString() }; // cuidado, si tiene mas fotos no se como cargarlas, hay que usar una query y modo distinto
+                    // metodo lector de imagenes ?
                     articulos.Add(artAux);
                 }
                 return articulos;
@@ -51,6 +53,26 @@ namespace Negocio
                 throw ex;
             }
             finally 
+            {
+                lector?.Close(); // pregunta si " lector == null? " si no lo esta llama al metodo interno Close() 
+                datos.CerrarConexion();
+            }
+        }
+        // Agregar Datos
+        public int Agregar(Articulo nuevoArticulo)
+        {
+            try
+            {
+                datos = new Database();
+                datos.AbrirConexion("server=.; database = CATALOGO_P3_DB; integrated security = true"); // CADENA DE CONEXION A LA BD 
+                datos.setQuery($"INSERT INTO ARTICULOS VALUES ('{nuevoArticulo.nombre}', '{nuevoArticulo.codigo}', '{nuevoArticulo.descrpicion}', '{nuevoArticulo.marca.marca}', '{nuevoArticulo.categoria.categoria}', '{nuevoArticulo.precio}')");
+                return datos.executeQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
             {
                 lector?.Close(); // pregunta si " lector == null? " si no lo esta llama al metodo interno Close() 
                 datos.CerrarConexion();

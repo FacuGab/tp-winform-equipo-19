@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace AccesoDatos
 {
@@ -77,11 +78,11 @@ namespace AccesoDatos
             }
         }
         // EJECUTAR
-        public void executeQuery()
+        public int executeQuery()
         {// podria retornar un int para obtener info de los datos afectados ¿?
             try
             {
-                command.ExecuteNonQuery();
+               return command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

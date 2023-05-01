@@ -1,4 +1,5 @@
-﻿using Negocio;
+﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,21 @@ namespace app
         {
             negocio = new NegocioArticulo();
             dgvPanel.DataSource = negocio.Leer();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            //negocio = new NegocioArticulo();
+            //Articulo art = new Articulo();
+            //art.nombre = "Facu";
+            //art.descrpicion = "programador";
+            //art.precio = 1;
+            //art.marca.marca = "1";
+            //art.categoria.categoria = "1";
+            //art.codigo = "aaa";
+
+            //if (negocio.Agregar(art) > 0)
+            //    MessageBox.Show("Articulo Agregado!");
         }
     }
 }

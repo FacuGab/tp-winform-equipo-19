@@ -30,6 +30,7 @@
         {
             this.dgvPanel = new System.Windows.Forms.DataGridView();
             this.btnActualizar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPanel)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,11 +52,22 @@
             this.btnActualizar.UseVisualStyleBackColor = true;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(625, 93);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(163, 23);
+            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
             // frmVentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.dgvPanel);
             this.Name = "frmVentanaPrincipal";
@@ -69,5 +81,6 @@
 
         private System.Windows.Forms.DataGridView dgvPanel;
         private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }

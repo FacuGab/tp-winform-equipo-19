@@ -8,6 +8,11 @@ namespace Dominio
 {
     public class Articulo
     {
+        public Articulo() 
+        { 
+            marca = new Marca();
+            categoria = new Categoria();
+        }
         public string codigo { get; set; }
         public string nombre { get; set; }
         public string descrpicion{ get; set; }
