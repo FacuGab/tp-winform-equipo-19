@@ -41,5 +41,15 @@ namespace app
             //if (negocio.Agregar(art) > 0)
             //    MessageBox.Show("Articulo Agregado!");
         }
+
+        private void frmVentanaPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

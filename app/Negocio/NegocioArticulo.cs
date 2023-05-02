@@ -27,7 +27,7 @@ namespace Negocio
                 articulos = new List<Articulo>();
                 datos = new Database();
 
-                datos.AbrirConexion("server=.; database = CATALOGO_P3_DB; integrated security = true"); // CADENA DE CONEXION A LA BD 
+                datos.AbrirConexion("server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true"); // CADENA DE CONEXION A LA BD 
                 datos.setQuery("SELECT Codigo, Nombre, A.Descripcion as Descripcion, C.Descripcion as Marca, M.Descripcion as Categoria, Precio, I.ImagenUrl FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria INNER JOIN MARCAS M on M.Id = A.IdMarca INNER JOIN IMAGENES I on I.IdArticulo = A.Id");    
                 datos.readData();
                 lector = datos.reader;
@@ -64,7 +64,7 @@ namespace Negocio
             try
             {
                 datos = new Database();
-                datos.AbrirConexion("server=.; database = CATALOGO_P3_DB; integrated security = true"); // CADENA DE CONEXION A LA BD 
+                datos.AbrirConexion("server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true"); // CADENA DE CONEXION A LA BD 
                 datos.setQuery($"INSERT INTO ARTICULOS VALUES ('{nuevoArticulo.nombre}', '{nuevoArticulo.codigo}', '{nuevoArticulo.descrpicion}', '{nuevoArticulo.marca.marca}', '{nuevoArticulo.categoria.categoria}', '{nuevoArticulo.precio}')");
                 return datos.executeQuery();
             }

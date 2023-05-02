@@ -4,3 +4,9 @@ C:\Users\facu\Desktop\UTN TUP\Programacion 3\2023\tpWinforms\ProyectoWinforms202
 C:\Users\facu\Desktop\UTN TUP\Programacion 3\2023\tpWinforms\ProyectoWinforms2023\app\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\facu\Desktop\UTN TUP\Programacion 3\2023\tpWinforms\ProyectoWinforms2023\app\Dominio\obj\Debug\Dominio.dll
 C:\Users\facu\Desktop\UTN TUP\Programacion 3\2023\tpWinforms\ProyectoWinforms2023\app\Dominio\obj\Debug\Dominio.pdb
+G:\My Drive\TUP-TUSI\Materias\5 - Quinto Cuatrimestre\Programación III\Winforms\ProyectoWinforms2023\app\Dominio\bin\Debug\Dominio.dll
+G:\My Drive\TUP-TUSI\Materias\5 - Quinto Cuatrimestre\Programación III\Winforms\ProyectoWinforms2023\app\Dominio\bin\Debug\Dominio.pdb
+G:\My Drive\TUP-TUSI\Materias\5 - Quinto Cuatrimestre\Programación III\Winforms\ProyectoWinforms2023\app\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+G:\My Drive\TUP-TUSI\Materias\5 - Quinto Cuatrimestre\Programación III\Winforms\ProyectoWinforms2023\app\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+G:\My Drive\TUP-TUSI\Materias\5 - Quinto Cuatrimestre\Programación III\Winforms\ProyectoWinforms2023\app\Dominio\obj\Debug\Dominio.dll
+G:\My Drive\TUP-TUSI\Materias\5 - Quinto Cuatrimestre\Programación III\Winforms\ProyectoWinforms2023\app\Dominio\obj\Debug\Dominio.pdb
