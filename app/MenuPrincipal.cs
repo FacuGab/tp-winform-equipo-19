@@ -19,6 +19,13 @@ namespace app
 
         private void btnNuevoArt_Click(object sender, EventArgs e)
         {
+            frmAgregarArt frmAgregarArt = new frmAgregarArt();
+            frmAgregarArt.MdiParent = this;
+            frmAgregarArt.Show();
+        }
+
+        private void btnControlArt_Click(object sender, EventArgs e)
+        {
             frmVentanaPrincipal frmVentanaPrincipal = new frmVentanaPrincipal();
             frmVentanaPrincipal.MdiParent = this;
             frmVentanaPrincipal.Show();

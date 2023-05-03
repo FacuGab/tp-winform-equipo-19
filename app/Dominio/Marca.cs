@@ -14,6 +14,7 @@ namespace Dominio
             marca = str;
         }
         public string marca { get; set; }
+        public int idMarca { get; set; }
         //Sobreescritura de metodo toString para que solo devuelva la marca cuando hagamos la lectura del objeto marca
         public override string ToString()
         {

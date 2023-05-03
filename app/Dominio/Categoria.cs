@@ -14,6 +14,7 @@ namespace Dominio
             categoria = str;
         }
         public string categoria { get; set; }
+        public int idCategoria { get; set; }
 
         //Sobreescritura de metodo toString para que solo devuelva la categoria cuando hagamos la lectura del objeto categoria
         public override string ToString()

@@ -24,5 +24,6 @@ namespace Dominio
         //Puede haber mas de 1 imagen para un articulo
         public List<string> imagenes { get; set; }  
         public decimal precio { get; set; }
+        public string UrlImagen { get; set; }
     }
 }

@@ -10,13 +10,13 @@ namespace AccesoDatos
 {
     public class Database
     {
-        //T VARIABLES:
+        //TODO: VARIABLES DATABASE
         public SqlDataReader reader { get; set; }
         private SqlConnection connection;
         private SqlCommand command;
 
         //T METODOS:
-        // ABRIR
+        // TODO: ABRIR CONEXION
         public bool AbrirConexion(string path)
         {
             try
@@ -34,7 +34,7 @@ namespace AccesoDatos
                 throw ex; 
             }
         }  
-        // CERRAR
+        // TODO: CERRAR CONEXION
         public void CerrarConexion()
         {
             try
@@ -51,7 +51,7 @@ namespace AccesoDatos
                 throw ex;
             }
         }
-        // SETEAR
+        // TODO: SETEAR DATOS
         public void setQuery(string query) 
         {
             try
@@ -64,7 +64,7 @@ namespace AccesoDatos
                 throw ex;
             }
         }
-        // LEER 
+        // TODO: LEER DATOS 
         public void readData()
         {
             try
@@ -88,6 +88,11 @@ namespace AccesoDatos
             {
                 throw ex;
             }
+        }
+
+        public void setearParamento(string nombre, object valor)
+        {
+            command.Parameters.AddWithValue(nombre, valor);
         }
     }//fin
 }

@@ -15,10 +15,19 @@ namespace app
     public partial class frmVentanaPrincipal : Form
     {
         NegocioArticulo negocio;
+        private List<Articulo> ListaArticulos;
         public frmVentanaPrincipal()
         {
             InitializeComponent();
         }
+        private void frmVentanaPrincipal_Load(object sender, EventArgs e)
+        {
+            negocio = new NegocioArticulo();
+            ListaArticulos = negocio.Leer();
+            dgvPanel.DataSource = negocio.Leer();
+            pbxArticuloLoad.Load(ListaArticulos[0].UrlImagen);
+        }
+
 
         // METODOS
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -29,23 +38,10 @@ namespace app
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //negocio = new NegocioArticulo();
-            //Articulo art = new Articulo();
-            //art.nombre = "Facu";
-            //art.descrpicion = "programador";
-            //art.precio = 1;
-            //art.marca.marca = "1";
-            //art.categoria.categoria = "1";
-            //art.codigo = "aaa";
-
-            //if (negocio.Agregar(art) > 0)
-            //    MessageBox.Show("Articulo Agregado!");
+            frmAgregarArt frmAgregarArt = new frmAgregarArt();
+            frmAgregarArt.ShowDialog();
         }
 
-        private void frmVentanaPrincipal_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void label1_Click(object sender, EventArgs e)
         {
