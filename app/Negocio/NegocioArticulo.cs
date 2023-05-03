@@ -43,7 +43,7 @@ namespace Negocio
                     artAux.marca = new Marca(lector["Marca"].ToString());
                     artAux.categoria = new Categoria(lector["Categoria"].ToString());
                     artAux.precio = Convert.ToDecimal(lector["Precio"]);
-                    artAux.imagenes = new List<string> { lector["URL"].ToString() }; // cuidado, si tiene mas fotos no se como cargarlas, hay que usar una query y modo distinto
+                    artAux.UrlImagen = lector["URL"].ToString(); // cuidado, si tiene mas fotos no se como cargarlas, hay que usar una query y modo distinto
                     // metodo lector de imagenes ?
                     articulos.Add(artAux);
                 }

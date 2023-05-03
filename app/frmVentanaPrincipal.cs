@@ -24,7 +24,7 @@ namespace app
         {
             negocio = new NegocioArticulo();
             ListaArticulos = negocio.Leer();
-            dgvPanel.DataSource = negocio.Leer();
+            dgvPanel.DataSource = ListaArticulos;
             pbxArticuloLoad.Load(ListaArticulos[0].UrlImagen);
         }
 
@@ -46,6 +46,20 @@ namespace app
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvPanel_SelectionChanged(object sender, EventArgs e)
+        {
+            Articulo seleccionado = (Articulo)dgvPanel.CurrentRow.DataBoundItem;
+            try
+            {
+                pbxArticuloLoad.Load(seleccionado.UrlImagen);
+            }
+            catch (Exception)
+            {
+
+                pbxArticuloLoad.Load("https://www.shutterstock.com/image-vector/no-image-available-vector-illustration-260nw-744886198.jpg");
+            }
         }
     }
 }

@@ -56,6 +56,7 @@
             this.dgvPanel.Name = "dgvPanel";
             this.dgvPanel.Size = new System.Drawing.Size(704, 350);
             this.dgvPanel.TabIndex = 0;
+            this.dgvPanel.SelectionChanged += new System.EventHandler(this.dgvPanel_SelectionChanged);
             // 
             // btnActualizar
             // 
@@ -100,7 +101,7 @@
             this.pbxArticuloLoad.Location = new System.Drawing.Point(752, 103);
             this.pbxArticuloLoad.Name = "pbxArticuloLoad";
             this.pbxArticuloLoad.Size = new System.Drawing.Size(350, 350);
-            this.pbxArticuloLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbxArticuloLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxArticuloLoad.TabIndex = 5;
             this.pbxArticuloLoad.TabStop = false;
             // 
