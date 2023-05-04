@@ -36,6 +36,7 @@ namespace app
             {
                 art.codigo = txtCodArt.Text;
                 art.descrpicion = txtDescrip.Text;
+                art.UrlImagen = txtUrl.Text;
                 art.precio = decimal.Parse(txtPrecio.Text);
                 art.nombre = txtNombre.Text;
                 art.categoria = (Categoria)cboCategoria.SelectedItem;
@@ -66,15 +67,22 @@ namespace app
                 MessageBox.Show(ex.ToString());
             }
         }
-
-        private void cboMarca_SelectedIndexChanged(object sender, EventArgs e)
+        //TODO: CARGAR IMAGEN EN CARGA DE ARTICULO
+        private void txtUrl_Leave(object sender, EventArgs e)
         {
-
+            cargarImg(txtUrl.Text);
         }
-
-        private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        //TODO: METODO CARGAR IMAGEN
+        private void cargarImg(string imagen)
         {
-            
+            try
+            {
+                pbxCargaImg.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pbxCargaImg.Load("https://images.wondershare.com/repairit/aticle/2021/07/resolve-images-not-showing-problem-1.jpg");
+            }
         }
     }
 }

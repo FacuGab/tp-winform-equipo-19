@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agregar Artículo.cs">
+    <Compile Include="AgregarArtículo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Agregar Artículo.Designer.cs">
-      <DependentUpon>Agregar Artículo.cs</DependentUpon>
+    <Compile Include="AgregarArtículo.Designer.cs">
+      <DependentUpon>AgregarArtículo.cs</DependentUpon>
     </Compile>
     <Compile Include="frmVentanaPrincipal.cs">
       <SubType>Form</SubType>
@@ -66,8 +66,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Agregar Artículo.resx">
-      <DependentUpon>Agregar Artículo.cs</DependentUpon>
+    <EmbeddedResource Include="AgregarArtículo.resx">
+      <DependentUpon>AgregarArtículo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVentanaPrincipal.resx">
       <DependentUpon>frmVentanaPrincipal.cs</DependentUpon>

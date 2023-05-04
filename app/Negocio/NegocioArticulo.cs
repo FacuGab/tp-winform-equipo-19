@@ -20,7 +20,7 @@ namespace Negocio
         public List<Marca> marcas;
 
         //TODO: METODOS:
-        // Leer Datos
+        // TODO: Leer Datos
         public List<Articulo> Leer()
         {
             try
@@ -43,7 +43,11 @@ namespace Negocio
                     artAux.marca = new Marca(lector["Marca"].ToString());
                     artAux.categoria = new Categoria(lector["Categoria"].ToString());
                     artAux.precio = Convert.ToDecimal(lector["Precio"]);
-                    artAux.UrlImagen = lector["URL"].ToString(); // cuidado, si tiene mas fotos no se como cargarlas, hay que usar una query y modo distinto
+                    //TODO: SOLO LEER SI EL LECTOR NO ESTA EN NULO
+                    if (!(lector["URL"] is DBNull))
+                    {
+                        artAux.UrlImagen = lector["URL"].ToString(); // cuidado, si tiene mas fotos no se como cargarlas, hay que usar una query y modo distinto
+                    }
                     // metodo lector de imagenes ?
                     articulos.Add(artAux);
                 }
@@ -136,13 +140,14 @@ namespace Negocio
         // TODO: Agregar Datos
         public int Agregar(Articulo nuevoArticulo)
         {
-            try
+            try//TODO:FALTA ARREGLAR EL ERROR DE QUE NO ME DEJA GUARDAR UN ARTICULO CON IMAGEN PORQUE LO GUARDA EN OTRA TABLA
             {
                 datos = new Database();
                 datos.AbrirConexion("server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true"); // CADENA DE CONEXION A LA BD 
-                datos.setQuery($"INSERT INTO ARTICULOS VALUES ('{nuevoArticulo.codigo}','{nuevoArticulo.nombre}', '{nuevoArticulo.descrpicion}', @marca, @categoria, '{nuevoArticulo.precio}')");
+                datos.setQuery($"INSERT INTO ARTICULOS VALUES ('{nuevoArticulo.codigo}','{nuevoArticulo.nombre}', '{nuevoArticulo.descrpicion}', @marca, @categoria,@UrlImagen',{nuevoArticulo.precio}')");
                 datos.setearParamento("@categoria", nuevoArticulo.categoria.idCategoria);
                 datos.setearParamento("@marca", nuevoArticulo.marca.idMarca);
+                datos.setearParamento("@UrlImagen", nuevoArticulo.UrlImagen);
                 return datos.executeQuery();
             }
             catch (Exception ex)

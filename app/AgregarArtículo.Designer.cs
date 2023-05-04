@@ -32,11 +32,11 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtDescrip = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtUrl = new System.Windows.Forms.TextBox();
             this.btnCargarImg = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbxCargaImg = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@
             this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.cboMarca = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxCargaImg)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCodArt
@@ -76,21 +76,22 @@
             this.txtPrecio.Location = new System.Drawing.Point(390, 135);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(121, 20);
-            this.txtPrecio.TabIndex = 3;
+            this.txtPrecio.TabIndex = 5;
             // 
-            // textBox5
+            // txtUrl
             // 
-            this.textBox5.Location = new System.Drawing.Point(588, 176);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(121, 20);
-            this.textBox5.TabIndex = 4;
+            this.txtUrl.Location = new System.Drawing.Point(589, 88);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(121, 20);
+            this.txtUrl.TabIndex = 6;
+            this.txtUrl.Leave += new System.EventHandler(this.txtUrl_Leave);
             // 
             // btnCargarImg
             // 
-            this.btnCargarImg.Location = new System.Drawing.Point(598, 56);
+            this.btnCargarImg.Location = new System.Drawing.Point(599, 155);
             this.btnCargarImg.Name = "btnCargarImg";
             this.btnCargarImg.Size = new System.Drawing.Size(100, 42);
-            this.btnCargarImg.TabIndex = 5;
+            this.btnCargarImg.TabIndex = 7;
             this.btnCargarImg.Text = "Cargar imagen";
             this.btnCargarImg.UseVisualStyleBackColor = true;
             // 
@@ -99,7 +100,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(194, 197);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(100, 42);
-            this.btnAceptar.TabIndex = 6;
+            this.btnAceptar.TabIndex = 8;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -109,18 +110,19 @@
             this.btnCancelar.Location = new System.Drawing.Point(359, 197);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 42);
-            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // pictureBox1
+            // pbxCargaImg
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(734, 30);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(183, 209);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
+            this.pbxCargaImg.Location = new System.Drawing.Point(734, 30);
+            this.pbxCargaImg.Name = "pbxCargaImg";
+            this.pbxCargaImg.Size = new System.Drawing.Size(183, 209);
+            this.pbxCargaImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxCargaImg.TabIndex = 8;
+            this.pbxCargaImg.TabStop = false;
             // 
             // label1
             // 
@@ -143,7 +145,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(614, 150);
+            this.label3.Location = new System.Drawing.Point(614, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 13);
             this.label3.TabIndex = 11;
@@ -192,8 +194,7 @@
             this.cboCategoria.Location = new System.Drawing.Point(390, 56);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(121, 21);
-            this.cboCategoria.TabIndex = 16;
-            this.cboCategoria.SelectedIndexChanged += new System.EventHandler(this.cboCategoria_SelectedIndexChanged);
+            this.cboCategoria.TabIndex = 3;
             // 
             // cboMarca
             // 
@@ -202,8 +203,7 @@
             this.cboMarca.Location = new System.Drawing.Point(390, 95);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(121, 21);
-            this.cboMarca.TabIndex = 17;
-            this.cboMarca.SelectedIndexChanged += new System.EventHandler(this.cboMarca_SelectedIndexChanged);
+            this.cboMarca.TabIndex = 4;
             // 
             // label8
             // 
@@ -229,12 +229,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbxCargaImg);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCargarImg);
             this.Controls.Add(this.txtCodArt);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtUrl);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtDescrip);
             this.Controls.Add(this.txtPrecio);
@@ -242,7 +242,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Agregar_Artículo";
             this.Load += new System.EventHandler(this.frmAgregarArt_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxCargaImg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,11 +254,11 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtDescrip;
         private System.Windows.Forms.TextBox txtPrecio;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.Button btnCargarImg;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbxCargaImg;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
