@@ -28,6 +28,12 @@ namespace app
         ////TODO: BOTON CONTROL ARTICULO
         private void btnControlArt_Click(object sender, EventArgs e)
         {
+
+            foreach (var item in Application.OpenForms)
+            {
+                if(item.GetType() == typeof(frmVentanaPrincipal)) 
+                    return;
+            }
             frmVentanaPrincipal frmVentanaPrincipal = new frmVentanaPrincipal();
             frmVentanaPrincipal.MdiParent = this;
             frmVentanaPrincipal.Show();
