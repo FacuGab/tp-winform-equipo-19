@@ -8,6 +8,7 @@ namespace Dominio
 {
     public class Marca
     {
+        //TODO: MARCA
         public Marca() { }
         public Marca(string str) 
         {
@@ -20,6 +21,5 @@ namespace Dominio
         {
             return marca;
         }
-
     }
 }

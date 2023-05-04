@@ -15,10 +15,12 @@ namespace AccesoDatos
         private SqlConnection connection;
         private SqlCommand command;
 
-        //T METODOS:
+        //METODOS:
         // TODO: ABRIR CONEXION
-        public bool AbrirConexion(string path)
+        public bool AbrirConexion(string path = "server=.; database = CATALOGO_P3_DB; integrated security = true")
         {
+            //cadena manu = "server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true"
+            //cadena facu = "server=.; database = CATALOGO_P3_DB; integrated security = true"
             try
             {
                 connection = new SqlConnection(path);
@@ -34,7 +36,7 @@ namespace AccesoDatos
                 throw ex; 
             }
         }  
-        // TODO: CERRAR CONEXION
+        //TODO: CERRAR CONEXION
         public void CerrarConexion()
         {
             try
@@ -51,7 +53,7 @@ namespace AccesoDatos
                 throw ex;
             }
         }
-        // TODO: SETEAR DATOS
+        //TODO: SETEAR DATOS
         public void setQuery(string query) 
         {
             try
@@ -64,7 +66,7 @@ namespace AccesoDatos
                 throw ex;
             }
         }
-        // TODO: LEER DATOS 
+        //TODO: LEER DATOS 
         public void readData()
         {
             try
@@ -77,7 +79,7 @@ namespace AccesoDatos
                 throw ex;
             }
         }
-        // EJECUTAR
+        //TODO: EJECUTAR
         public int executeQuery()
         {// podria retornar un int para obtener info de los datos afectados ¿?
             try
@@ -89,7 +91,7 @@ namespace AccesoDatos
                 throw ex;
             }
         }
-
+        //TODO: SETEAR PARAMETROS
         public void setearParamento(string nombre, object valor)
         {
             command.Parameters.AddWithValue(nombre, valor);

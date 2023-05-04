@@ -17,6 +17,7 @@ namespace app
             InitializeComponent();
         }
 
+        //TODO: BOTON NUEVO ARTICULO
         private void btnNuevoArt_Click(object sender, EventArgs e)
         {
             frmAgregarArt frmAgregarArt = new frmAgregarArt();
@@ -24,6 +25,7 @@ namespace app
             frmAgregarArt.Show();
         }
 
+        ////TODO: BOTON CONTROL ARTICULO
         private void btnControlArt_Click(object sender, EventArgs e)
         {
             frmVentanaPrincipal frmVentanaPrincipal = new frmVentanaPrincipal();

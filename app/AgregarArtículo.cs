@@ -79,7 +79,7 @@ namespace app
             {
                 pbxCargaImg.Load(imagen);
             }
-            catch (Exception ex)
+            catch
             {
                 pbxCargaImg.Load("https://images.wondershare.com/repairit/aticle/2021/07/resolve-images-not-showing-problem-1.jpg");
             }

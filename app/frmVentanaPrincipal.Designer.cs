@@ -159,7 +159,6 @@
             this.lblFiltroNombre.Size = new System.Drawing.Size(143, 15);
             this.lblFiltroNombre.TabIndex = 10;
             this.lblFiltroNombre.Text = "Nombre / Código artículo";
-            this.lblFiltroNombre.Click += new System.EventHandler(this.label1_Click);
             // 
             // tbFiltroNombre
             // 
@@ -208,7 +207,7 @@
             this.Controls.Add(this.dgvPanel);
             this.Name = "frmVentanaPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frnVentanaPrincipal";
+            this.Text = "Articulos";
             this.Load += new System.EventHandler(this.frmVentanaPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloLoad)).EndInit();

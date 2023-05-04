@@ -14,12 +14,14 @@ namespace app
 {
     public partial class frmVentanaPrincipal : Form
     {
+        //TODO: VARIABLES frmVentanaPrincipal
         NegocioArticulo negocio;
         private List<Articulo> ListaArticulos;
         public frmVentanaPrincipal()
         {
             InitializeComponent();
         }
+        //TODO: LOAD frmVentanaPrincipal
         private void frmVentanaPrincipal_Load(object sender, EventArgs e)
         {
             negocio = new NegocioArticulo();
@@ -28,44 +30,45 @@ namespace app
             dgvPanel.Columns["UrlImagen"].Visible = false;
             pbxArticuloLoad.Load(ListaArticulos[0].UrlImagen);
         }
-
-
-        // METODOS
+        //TODO: EVENTOS frmVentanaPrincipal
+        //TODO: BOTON ACTUALIZAR
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+
             negocio = new NegocioArticulo();
             dgvPanel.DataSource = negocio.Leer();
+            CargarImg( ((Articulo)dgvPanel.CurrentRow.DataBoundItem).UrlImagen );
         }
-
+        //TODO: BOTON AGREGAR
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarArt frmAgregarArt = new frmAgregarArt();
             frmAgregarArt.ShowDialog();
         }
 
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //TODO: SELECCION EN GRID
         private void dgvPanel_SelectionChanged(object sender, EventArgs e)
         {
             Articulo seleccionado = (Articulo)dgvPanel.CurrentRow.DataBoundItem;
+            CargarImg(seleccionado.UrlImagen);
+        }
+        //TODO: BOTON EDITAR
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            // nada por ahora... 
+        }
+        //TODO: METODOS frmVentanaPrincipal
+        //TODO: Cargar Imagen
+        private void CargarImg(string path)
+        {
             try
             {
-                pbxArticuloLoad.Load(seleccionado.UrlImagen);
+                pbxArticuloLoad.Load(path);
             }
             catch (Exception)
             {
-
                 pbxArticuloLoad.Load("https://www.shutterstock.com/image-vector/no-image-available-vector-illustration-260nw-744886198.jpg");
             }
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
