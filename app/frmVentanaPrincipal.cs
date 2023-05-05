@@ -28,7 +28,8 @@ namespace app
             ListaArticulos = negocio.Leer();
             dgvPanel.DataSource = ListaArticulos;
             dgvPanel.Columns["UrlImagen"].Visible = false;
-            pbxArticuloLoad.Load(ListaArticulos[0].UrlImagen);
+            CargarImg(ListaArticulos[0].UrlImagen);
+            //pbxArticuloLoad.Load(ListaArticulos[0].UrlImagen);
         }
         //TODO: EVENTOS frmVentanaPrincipal
         //TODO: BOTON ACTUALIZAR
@@ -45,7 +46,6 @@ namespace app
             frmAgregarArt frmAgregarArt = new frmAgregarArt();
             frmAgregarArt.ShowDialog();
         }
-
         //TODO: SELECCION EN GRID
         private void dgvPanel_SelectionChanged(object sender, EventArgs e)
         {

@@ -20,6 +20,11 @@ namespace app
         //TODO: BOTON NUEVO ARTICULO
         private void btnNuevoArt_Click(object sender, EventArgs e)
         {
+            foreach (var item in Application.OpenForms)
+            {
+                if (item.GetType() == typeof(frmAgregarArt))
+                    return;
+            }
             frmAgregarArt frmAgregarArt = new frmAgregarArt();
             frmAgregarArt.MdiParent = this;
             frmAgregarArt.Show();

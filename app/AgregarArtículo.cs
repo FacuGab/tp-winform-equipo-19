@@ -18,12 +18,28 @@ namespace app
         {
             InitializeComponent();
         }
+        //TODO: EVENTOS:
+        //TODO: LOAD frmAgregarArt
+        private void frmAgregarArt_Load(object sender, EventArgs e)
+        {
+            NegocioArticulo negocio = new NegocioArticulo();
+            try
+            {
+                cboCategoria.DataSource = negocio.LeerCategorias();
+                cboMarca.DataSource = negocio.LeerMarcas();
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        //TODO: BOTON CANCELAR
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        //TODO: BOTON ACEPTAR
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             //TODO: Agregar Articulo
@@ -52,22 +68,7 @@ namespace app
             }
             this.Close();
         }
-
-        private void frmAgregarArt_Load(object sender, EventArgs e)
-        {
-            NegocioArticulo negocio = new NegocioArticulo();
-            try
-            {
-                cboCategoria.DataSource = negocio.LeerCategorias();
-                cboMarca.DataSource = negocio.LeerMarcas();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-        }
-        //TODO: CARGAR IMAGEN EN CARGA DE ARTICULO
+        //TODO: EVEMTO IMAGEN EN CARGA DE ARTICULO
         private void txtUrl_Leave(object sender, EventArgs e)
         {
             cargarImg(txtUrl.Text);

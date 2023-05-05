@@ -29,7 +29,8 @@ namespace Negocio
                 articulos = new List<Articulo>();
                 datos = new Database();
 
-                datos.AbrirConexion(); // CADENA DE CONEXION A LA BD 
+                // CADENA DE CONEXION A LA BD EN Database.cs (sino hay que cambiar todos las cadenas de todos los metodos, ir a Database para cambiarlo de forma unificada)
+                datos.AbrirConexion();
                 datos.setQuery("SELECT Codigo, Nombre, A.Descripcion as Descripcion, C.Descripcion as Marca, M.Descripcion as Categoria, Precio, I.ImagenUrl  as URL FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria INNER JOIN MARCAS M on M.Id = A.IdMarca INNER JOIN IMAGENES I on I.IdArticulo = A.Id");    
                 datos.readData();
                 lector = datos.reader;
@@ -43,11 +44,8 @@ namespace Negocio
                     artAux.marca = new Marca(lector["Marca"].ToString());
                     artAux.categoria = new Categoria(lector["Categoria"].ToString());
                     artAux.precio = Convert.ToDecimal(lector["Precio"]);
-                    //TODO: SOLO LEER SI EL LECTOR NO ESTA EN NULO
                     if (!(lector["URL"] is DBNull))
-                    {
                         artAux.UrlImagen = lector["URL"].ToString(); // cuidado, si tiene mas fotos no se como cargarlas, hay que usar una query y modo distinto
-                    }
                     // metodo lector de imagenes ?
                     articulos.Add(artAux);
                 }
@@ -73,7 +71,7 @@ namespace Negocio
                 categorias = new List<Categoria>();
                 datos = new Database();
 
-                datos.AbrirConexion("server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true"); // CADENA DE CONEXION A LA BD 
+                datos.AbrirConexion();
                 datos.setQuery("SELECT id, Descripcion FROM CATEGORIAS");
                 datos.readData();
                 lector = datos.reader;
@@ -83,8 +81,6 @@ namespace Negocio
                     cat = new Categoria();
                     cat.idCategoria = (int)lector["id"];
                     cat.categoria = lector["Descripcion"].ToString();
-
-                    // metodo lector de imagenes ?
                     categorias.Add(cat);
                 }
                 return categorias;
@@ -109,7 +105,7 @@ namespace Negocio
                 marcas = new List<Marca>();
                 datos = new Database();
 
-                datos.AbrirConexion("server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true"); // CADENA DE CONEXION A LA BD 
+                datos.AbrirConexion();
                 datos.setQuery("SELECT id, Descripcion FROM MARCAS");
                 datos.readData();
                 lector = datos.reader;
@@ -119,8 +115,6 @@ namespace Negocio
                     marca = new Marca();
                     marca.idMarca = (int)lector["id"];
                     marca.marca = lector["Descripcion"].ToString();
-
-                    // metodo lector de imagenes ?
                     marcas.Add(marca);
                 }
                 return marcas;
