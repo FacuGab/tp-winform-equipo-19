@@ -43,8 +43,15 @@ namespace Negocio
                     artAux.codigo = lector["Codigo"].ToString();
                     artAux.nombre = lector["Nombre"].ToString();
                     artAux.descripicion = lector["Descripcion"].ToString();
+
                     artAux.marca = new Marca(lector["Marca"].ToString());
+                    artAux.marca.idMarca = (int)lector["Id"];
+                    artAux.marca.marca = lector["Marca"].ToString();
+
                     artAux.categoria = new Categoria(lector["Categoria"].ToString());
+                    artAux.categoria.idCategoria = (int)lector["Id"];
+                    artAux.categoria.categoria = lector["Categoria"].ToString();
+
                     artAux.precio = Convert.ToDecimal(lector["Precio"]);
                     if (!(lector["URL"] is DBNull))
                         artAux.UrlImagen = lector["URL"].ToString(); // cuidado, si tiene mas fotos no se como cargarlas, hay que usar una query y modo distinto
@@ -161,6 +168,8 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+        //TODO: Modificar artículo (falta agregar el metodo modificar)
+        
         //TODO: Agregar url Img
         public int AgregarImg(int idArt, string urlImg)
         {

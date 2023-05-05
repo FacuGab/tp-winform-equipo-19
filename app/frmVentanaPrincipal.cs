@@ -71,5 +71,10 @@ namespace app
                 pbxArticuloLoad.Load("https://www.shutterstock.com/image-vector/no-image-available-vector-illustration-260nw-744886198.jpg");
             }
         }
+
+        private void pbActualizar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

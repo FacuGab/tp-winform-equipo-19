@@ -64,6 +64,7 @@
             // 
             // btnActualizar
             // 
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnActualizar.Location = new System.Drawing.Point(320, 476);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(105, 35);
@@ -129,6 +130,7 @@
             this.pbActualizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbActualizar.TabIndex = 7;
             this.pbActualizar.TabStop = false;
+            this.pbActualizar.Click += new System.EventHandler(this.pbActualizar_Click);
             // 
             // pbEliminar
             // 
