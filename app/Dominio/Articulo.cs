@@ -22,7 +22,7 @@ namespace Dominio
         [DisplayName("Nombre")]
         public string nombre { get; set; }
         [DisplayName("Descripción")]
-        public string descrpicion{ get; set; }
+        public string descripicion{ get; set; }
         [DisplayName("Marca")]
         public Marca marca { get; set; }
         [DisplayName("Categoría")]

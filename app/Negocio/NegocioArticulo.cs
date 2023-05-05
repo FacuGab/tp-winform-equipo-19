@@ -32,16 +32,17 @@ namespace Negocio
 
                 // CADENA DE CONEXION A LA BD EN Database.cs (sino hay que cambiar todos las cadenas de todos los metodos, ir a Database para cambiarlo de forma unificada)
                 datos.AbrirConexion();
-                datos.setQuery("SELECT Codigo, Nombre, A.Descripcion as Descripcion, C.Descripcion as Marca, M.Descripcion as Categoria, Precio, I.ImagenUrl  as URL FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria INNER JOIN MARCAS M on M.Id = A.IdMarca INNER JOIN IMAGENES I on I.IdArticulo = A.Id");    
+                datos.setQuery("SELECT A.Id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio, I.ImagenUrl  as URL FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria INNER JOIN MARCAS M on M.Id = A.IdMarca INNER JOIN IMAGENES I on I.IdArticulo = A.Id");    
                 datos.readData();
                 lector = datos.reader;
 
                 while(lector.Read())
                 {
                     artAux = new Articulo();
+                    artAux.id = Convert.ToInt32(lector["Id"]);
                     artAux.codigo = lector["Codigo"].ToString();
                     artAux.nombre = lector["Nombre"].ToString();
-                    artAux.descrpicion = lector["Descripcion"].ToString();
+                    artAux.descripicion = lector["Descripcion"].ToString();
                     artAux.marca = new Marca(lector["Marca"].ToString());
                     artAux.categoria = new Categoria(lector["Categoria"].ToString());
                     artAux.precio = Convert.ToDecimal(lector["Precio"]);
@@ -52,6 +53,10 @@ namespace Negocio
                 }
                 return articulos;
 
+            }
+            catch(SqlException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {
@@ -140,7 +145,7 @@ namespace Negocio
                 datos.setQuery(query);
                 datos.setearParamento("@codigo", nuevoArticulo.codigo);
                 datos.setearParamento("@nombre", nuevoArticulo.nombre);
-                datos.setearParamento("@descrpicion", nuevoArticulo.descrpicion);
+                datos.setearParamento("@descrpicion", nuevoArticulo.descripicion);
                 datos.setearParamento("@categoria", nuevoArticulo.categoria.idCategoria);
                 datos.setearParamento("@marca", nuevoArticulo.marca.idMarca);
                 datos.setearParamento("@precio", nuevoArticulo.precio);

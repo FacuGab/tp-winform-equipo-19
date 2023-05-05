@@ -15,23 +15,38 @@ namespace app
 {
     public partial class frmAgregarArt : Form
     {
+        private Articulo articulo = null;
+        private NegocioArticulo negocio;
         public frmAgregarArt()
         {
             InitializeComponent();
         }
+        public frmAgregarArt(Articulo art)
+        {
+            articulo = art;
+            InitializeComponent();
+        }
+
         //TODO: EVENTOS:
         //TODO: LOAD frmAgregarArt
         private void frmAgregarArt_Load(object sender, EventArgs e)
         {
-            NegocioArticulo negocio = new NegocioArticulo();
+            negocio = new NegocioArticulo();
             try
             {
-                cboCategoria.DataSource = negocio.LeerCategorias();
-                cboMarca.DataSource = negocio.LeerMarcas();
+                if(articulo != null ) 
+                {
+                    cargarFormulario(articulo);
+                }
+                else
+                {
+                    cboCategoria.DataSource = negocio.LeerCategorias();
+                    cboMarca.DataSource = negocio.LeerMarcas();
+                    // aca podria ir un pbxCargaImg.Load o ver como ponerle una img por defecto de fondo cuando carga sin traer datos
+                }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }
@@ -50,7 +65,7 @@ namespace app
             try 
             {
                 art.codigo = txtCodArt.Text;
-                art.descrpicion = txtDescrip.Text;
+                art.descripicion = txtDescrip.Text;
                 art.UrlImagen = txtUrl.Text;
                 art.precio = decimal.Parse(txtPrecio.Text);
                 art.nombre = txtNombre.Text;
@@ -58,12 +73,12 @@ namespace app
                 art.marca = (Marca)cboMarca.SelectedItem;
 
                 res += negocioArticulo.Agregar(art);
-                //res += negocioArticulo.AgregarImg(art.id, art.UrlImagen);
+                res += negocioArticulo.AgregarImg(art.id, art.UrlImagen);
 
-                if (res > 0)
+                if (res > 1)
                     MessageBox.Show("Articulo Guardado");
                 else
-                    MessageBox.Show("Articulo No Guardado");
+                    MessageBox.Show("Ocurrio un error al agregar los datos");
             }
             catch(Exception ex) 
             {
@@ -87,6 +102,20 @@ namespace app
             {
                 pbxCargaImg.Load("https://images.wondershare.com/repairit/aticle/2021/07/resolve-images-not-showing-problem-1.jpg");
             }
+        }
+        //TODO: METODO CARGAR FORMULARIO
+        private void cargarFormulario(Articulo articulo) 
+        {
+            txtCodArt.Text = articulo.codigo;
+            txtNombre.Text = articulo.nombre;
+            txtDescrip.Text = articulo.descripicion;
+            txtPrecio.Text = articulo.precio.ToString();
+            pbxCargaImg.Load(articulo.UrlImagen);
+
+            // Hay que ver como hacer que los cbo carguen con la categoria y marca correcta ...
+            negocio = new NegocioArticulo();
+            cboCategoria.DataSource = negocio.LeerCategorias();
+            cboMarca.DataSource = negocio.LeerMarcas();
         }
     }
 }

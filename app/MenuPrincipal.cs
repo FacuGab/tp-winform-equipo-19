@@ -16,7 +16,6 @@ namespace app
         {
             InitializeComponent();
         }
-
         //TODO: BOTON NUEVO ARTICULO
         private void btnNuevoArt_Click(object sender, EventArgs e)
         {
@@ -29,7 +28,6 @@ namespace app
             frmAgregarArt.MdiParent = this;
             frmAgregarArt.Show();
         }
-
         ////TODO: BOTON CONTROL ARTICULO
         private void btnControlArt_Click(object sender, EventArgs e)
         {

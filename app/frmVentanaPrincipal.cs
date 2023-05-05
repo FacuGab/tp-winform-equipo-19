@@ -29,7 +29,6 @@ namespace app
             dgvPanel.DataSource = ListaArticulos;
             dgvPanel.Columns["UrlImagen"].Visible = false;
             CargarImg(ListaArticulos[0].UrlImagen);
-            //pbxArticuloLoad.Load(ListaArticulos[0].UrlImagen);
         }
         //TODO: EVENTOS frmVentanaPrincipal
         //TODO: BOTON ACTUALIZAR
@@ -55,7 +54,9 @@ namespace app
         //TODO: BOTON EDITAR
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            // nada por ahora... 
+            Articulo art = (Articulo)dgvPanel.CurrentRow.DataBoundItem;
+            frmAgregarArt frmAgregarArt = new frmAgregarArt(art);
+            frmAgregarArt.ShowDialog();
         }
         //TODO: METODOS frmVentanaPrincipal
         //TODO: Cargar Imagen

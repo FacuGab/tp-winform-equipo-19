@@ -36,7 +36,6 @@
             this.btnCargarImg = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.pbxCargaImg = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,6 +46,9 @@
             this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.cboMarca = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.panelImg = new System.Windows.Forms.Panel();
+            this.pbxCargaImg = new System.Windows.Forms.PictureBox();
+            this.panelImg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCargaImg)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,7 +82,7 @@
             // 
             // txtUrl
             // 
-            this.txtUrl.Location = new System.Drawing.Point(589, 88);
+            this.txtUrl.Location = new System.Drawing.Point(20, 50);
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(121, 20);
             this.txtUrl.TabIndex = 6;
@@ -88,7 +90,7 @@
             // 
             // btnCargarImg
             // 
-            this.btnCargarImg.Location = new System.Drawing.Point(599, 155);
+            this.btnCargarImg.Location = new System.Drawing.Point(30, 117);
             this.btnCargarImg.Name = "btnCargarImg";
             this.btnCargarImg.Size = new System.Drawing.Size(100, 42);
             this.btnCargarImg.TabIndex = 7;
@@ -115,15 +117,6 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // pbxCargaImg
-            // 
-            this.pbxCargaImg.Location = new System.Drawing.Point(734, 30);
-            this.pbxCargaImg.Name = "pbxCargaImg";
-            this.pbxCargaImg.Size = new System.Drawing.Size(183, 209);
-            this.pbxCargaImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxCargaImg.TabIndex = 8;
-            this.pbxCargaImg.TabStop = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -145,7 +138,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(614, 72);
+            this.label3.Location = new System.Drawing.Point(45, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 13);
             this.label3.TabIndex = 11;
@@ -208,33 +201,52 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(640, 121);
+            this.label8.Location = new System.Drawing.Point(71, 83);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(13, 13);
             this.label8.TabIndex = 18;
             this.label8.Text = "ó";
+            // 
+            // panelImg
+            // 
+            this.panelImg.BackColor = System.Drawing.SystemColors.Control;
+            this.panelImg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panelImg.Controls.Add(this.label8);
+            this.panelImg.Controls.Add(this.label3);
+            this.panelImg.Controls.Add(this.pbxCargaImg);
+            this.panelImg.Controls.Add(this.btnCargarImg);
+            this.panelImg.Controls.Add(this.txtUrl);
+            this.panelImg.Location = new System.Drawing.Point(556, 23);
+            this.panelImg.Name = "panelImg";
+            this.panelImg.Size = new System.Drawing.Size(374, 230);
+            this.panelImg.TabIndex = 19;
+            // 
+            // pbxCargaImg
+            // 
+            this.pbxCargaImg.Location = new System.Drawing.Point(178, 9);
+            this.pbxCargaImg.Name = "pbxCargaImg";
+            this.pbxCargaImg.Size = new System.Drawing.Size(183, 209);
+            this.pbxCargaImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxCargaImg.TabIndex = 8;
+            this.pbxCargaImg.TabStop = false;
             // 
             // frmAgregarArt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 280);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.panelImg);
             this.Controls.Add(this.cboMarca);
             this.Controls.Add(this.cboCategoria);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pbxCargaImg);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.btnCargarImg);
             this.Controls.Add(this.txtCodArt);
-            this.Controls.Add(this.txtUrl);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtDescrip);
             this.Controls.Add(this.txtPrecio);
@@ -242,6 +254,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Agregar_Artículo";
             this.Load += new System.EventHandler(this.frmAgregarArt_Load);
+            this.panelImg.ResumeLayout(false);
+            this.panelImg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCargaImg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -269,5 +283,6 @@
         private System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.ComboBox cboMarca;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panelImg;
     }
 }
