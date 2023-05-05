@@ -7,6 +7,7 @@ using Dominio;
 using AccesoDatos;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Data.Common;
 
 namespace Negocio
 {
@@ -84,7 +85,6 @@ namespace Negocio
                     categorias.Add(cat);
                 }
                 return categorias;
-
             }
             catch (Exception ex)
             {
@@ -118,7 +118,6 @@ namespace Negocio
                     marcas.Add(marca);
                 }
                 return marcas;
-
             }
             catch (Exception ex)
             {
@@ -133,14 +132,18 @@ namespace Negocio
         //TODO: Agregar Datos
         public int Agregar(Articulo nuevoArticulo)
         {
-            try//TODO:FALTA ARREGLAR EL ERROR DE QUE NO ME DEJA GUARDAR UN ARTICULO CON IMAGEN PORQUE LO GUARDA EN OTRA TABLA
+            try
             {
                 datos = new Database();
-                datos.AbrirConexion(); // CADENA DE CONEXION A LA BD, ir a Database.cs para cambiar la cadena
-                datos.setQuery($"INSERT INTO ARTICULOS VALUES ('{nuevoArticulo.codigo}','{nuevoArticulo.nombre}', '{nuevoArticulo.descrpicion}', @marca, @categoria,@UrlImagen',{nuevoArticulo.precio}')");
+                datos.AbrirConexion(); // CADENA DE CONEXION A LA BD (ir a Database.cs para cambiar la cadena)
+                string query = $"INSERT INTO ARTICULOS VALUES ('@codigo', '@nombre', '@descripcion', @marca, @categoria, @precio)";
+                datos.setQuery(query);
+                datos.setearParamento("@codigo", nuevoArticulo.codigo);
+                datos.setearParamento("@nombre", nuevoArticulo.nombre);
+                datos.setearParamento("@descrpicion", nuevoArticulo.descrpicion);
                 datos.setearParamento("@categoria", nuevoArticulo.categoria.idCategoria);
                 datos.setearParamento("@marca", nuevoArticulo.marca.idMarca);
-                datos.setearParamento("@UrlImagen", nuevoArticulo.UrlImagen);
+                datos.setearParamento("@precio", nuevoArticulo.precio);
                 return datos.executeQuery();
             }
             catch (Exception ex)
@@ -150,6 +153,29 @@ namespace Negocio
             finally
             {
                 lector?.Close(); // pregunta si " lector == null? " si no lo esta llama al metodo interno Close() 
+                datos.CerrarConexion();
+            }
+        }
+        //TODO: Agregar url Img
+        public int AgregarImg(int idArt, string urlImg)
+        {
+            // se necesita el id de articulo + el url de la imagen asociada
+            try
+            {
+                datos = new Database();
+                datos.AbrirConexion();
+                datos.setQuery("INSERT INTO IMAGENES VALUES (@idarticulo,'@urlimg')");
+                datos.setearParamento("@idarticulo", idArt);
+                datos.setearParamento("@urlimg", urlImg);
+                return datos.executeQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally 
+            { 
+                lector?.Close(); 
                 datos.CerrarConexion();
             }
         }

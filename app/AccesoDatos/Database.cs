@@ -86,6 +86,10 @@ namespace AccesoDatos
             {
                return command.ExecuteNonQuery();
             }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
             catch (Exception ex)
             {
                 throw ex;

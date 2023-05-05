@@ -118,6 +118,7 @@ GO
 
 -- 
 
+-- TODOS LOS ARTICULOS 
 SELECT Codigo, Nombre, A.Descripcion as Descripcion, C.Descripcion as Marca, M.Descripcion as Categoria, Precio, I.ImagenUrl 
 FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria 
 INNER JOIN MARCAS M on M.Id = A.IdMarca INNER JOIN IMAGENES I on I.IdArticulo = A.Id
@@ -126,5 +127,10 @@ SELECT A.Codigo, A.Nombre, A.Descripcion as Descripcion, M.Descripcion as Marcas
 FROM ARTICULOS A, MARCAS M, CATEGORIAS C
 WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id
 
---
+-- INSERT
+INSERT INTO ARTICULOS VALUES ('AAA', 'A', 'a', '1', '1', 1)
+INSERT INTO IMAGENES VALUES (7,'?E:\Imagenes\080.png')
+
+-- UPDATE
+UPDATE IMAGENES SET ImagenUrl = 'E:\Imagenes\080.png'
 

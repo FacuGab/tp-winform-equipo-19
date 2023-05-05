@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -43,11 +44,9 @@ namespace app
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             //TODO: Agregar Articulo
-            //TODO: REVISAR PORQUE AL CREAR UN ARTICULO NUEVO, AL TOCAR ACTUALIZAR NO APARECE EL NUEVO ARTICULO, SIENDO QUE EN LA BASE LO VEO CREADO
             Articulo art = new Articulo();
             NegocioArticulo negocioArticulo = new NegocioArticulo();
-            //Categoria cat = new Categoria();
-            //Marca marca = new Marca();
+            int res = 0;
             try 
             {
                 art.codigo = txtCodArt.Text;
@@ -58,15 +57,19 @@ namespace app
                 art.categoria = (Categoria)cboCategoria.SelectedItem;
                 art.marca = (Marca)cboMarca.SelectedItem;
 
-                negocioArticulo.Agregar(art);
-                MessageBox.Show("Articulo Guardado");
+                res += negocioArticulo.Agregar(art);
+                //res += negocioArticulo.AgregarImg(art.id, art.UrlImagen);
 
+                if (res > 0)
+                    MessageBox.Show("Articulo Guardado");
+                else
+                    MessageBox.Show("Articulo No Guardado");
             }
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.ToString());
             }
-            this.Close();
+            Close();
         }
         //TODO: EVEMTO IMAGEN EN CARGA DE ARTICULO
         private void txtUrl_Leave(object sender, EventArgs e)

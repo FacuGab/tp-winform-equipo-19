@@ -33,7 +33,6 @@ namespace app
         ////TODO: BOTON CONTROL ARTICULO
         private void btnControlArt_Click(object sender, EventArgs e)
         {
-
             foreach (var item in Application.OpenForms)
             {
                 if(item.GetType() == typeof(frmVentanaPrincipal)) 
@@ -42,6 +41,11 @@ namespace app
             frmVentanaPrincipal frmVentanaPrincipal = new frmVentanaPrincipal();
             frmVentanaPrincipal.MdiParent = this;
             frmVentanaPrincipal.Show();
+        }
+        //TODO: BOTON SALIR
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
