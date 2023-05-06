@@ -21,6 +21,7 @@ namespace app
         {
             InitializeComponent();
         }
+
         //TODO: LOAD frmVentanaPrincipal
         private void frmVentanaPrincipal_Load(object sender, EventArgs e)
         {
@@ -30,6 +31,7 @@ namespace app
             dgvPanel.Columns["UrlImagen"].Visible = false;
             CargarImg(ListaArticulos[0].UrlImagen);
         }
+
         //TODO: EVENTOS frmVentanaPrincipal
         //TODO: BOTON ACTUALIZAR
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -60,6 +62,50 @@ namespace app
             
             
         }
+        //TODO: BOTON ELEMINAR
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            try
+            {
+                seleccionado = (Articulo)dgvPanel.CurrentRow.DataBoundItem;
+                DialogResult r = MessageBox.Show("Desea eliminar el artículo?", "Eliminar", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (r == DialogResult.OK)
+                {
+                    negocio.Eliminar(seleccionado.id);
+                    MessageBox.Show("Artículo eliminado exitosamente!");
+                    dgvPanel.DataSource = negocio.Leer();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        //TODO: FILTROS (Filtrar lista actual por Nombre o Codigo)
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            // ver si crear un metodo auxiliar que carge la lista filtrada para que no quede " poco amigable a la lectura " 
+            listaFiltrada = ListaArticulos.FindAll(
+                x => (
+                    x.nombre.ToUpperInvariant() == tbFiltroNombre.Text.ToUpperInvariant() ||
+                    x.nombre.ToUpperInvariant() == tbFiltroNombre.Text.ToUpperInvariant()
+                )
+            );
+            dgvPanel.DataSource = null;
+            dgvPanel.DataSource = listaFiltrada;
+        }
+        //TODO: ¿?
+        private void pbActualizar_Click(object sender, EventArgs e)
+        {
+            // ¿?
+        }
+
         //TODO: METODOS frmVentanaPrincipal
         //TODO: Cargar Imagen
         private void CargarImg(string path)
@@ -73,44 +119,6 @@ namespace app
                 pbxArticuloLoad.Load("https://www.shutterstock.com/image-vector/no-image-available-vector-illustration-260nw-744886198.jpg");
             }
         }
-
-        private void pbActualizar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            Articulo seleccionado;
-            try
-            {
-                seleccionado = (Articulo)dgvPanel.CurrentRow.DataBoundItem;
-                DialogResult r = MessageBox.Show("Desea eliminar el artículo?", "Eliminar",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
-                if (r == DialogResult.OK)
-                { 
-                    negocio.Eliminar(seleccionado.id);
-                    MessageBox.Show("Artículo eliminado exitosamente!");
-                    dgvPanel.DataSource = negocio.Leer();
-                }
-                else
-                {
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-        }
-        //TODO:FILTROS
-        private void btnFiltrar_Click(object sender, EventArgs e)
-        {
-            List<Articulo> listaFiltrada;
-            listaFiltrada = ListaArticulos.FindAll(x => x.nombre == tbFiltroNombre.Text);
-            dgvPanel.DataSource = null;
-            dgvPanel.DataSource = listaFiltrada;
-
-        }
-    }
+        
+    }//Fin
 }

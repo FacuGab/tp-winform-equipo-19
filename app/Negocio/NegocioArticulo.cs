@@ -8,6 +8,7 @@ using AccesoDatos;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.Common;
+using System.Net;
 
 namespace Negocio
 {
@@ -168,7 +169,6 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-
         //TODO: Modificar artículo (HAY QUE REVISAR LA QUERY PRINCIPAL QUE NO TRAE LOS NUEVOS ARTÍCULOS)
         public int Modificar(Articulo nuevoArticulo)
         {
@@ -197,7 +197,6 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-
         //TODO: Eliminar Artículo
         public  int Eliminar(int id)
         {
@@ -232,6 +231,28 @@ namespace Negocio
                 datos.setQuery("INSERT INTO IMAGENES VALUES (@idarticulo,'@urlimg')");
                 datos.setearParamento("@idarticulo", idArt);
                 datos.setearParamento("@urlimg", urlImg);
+                return datos.executeQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally 
+            { 
+                lector?.Close(); 
+                datos.CerrarConexion();
+            }
+        }
+        //TODO: Modificar Imagen 
+        public int ModificarImg(int Id, string urlImg)
+        {
+            datos= new Database();
+            try
+            {
+                datos.AbrirConexion();
+                datos.setQuery("UPDATE IMAGENES SET ImagenUrl = '@urlimg' WHERE Id = @id");
+                datos.setearParamento("@urlimg", urlImg);
+                datos.setearParamento("@id", Id);
                 return datos.executeQuery();
             }
             catch (Exception ex)

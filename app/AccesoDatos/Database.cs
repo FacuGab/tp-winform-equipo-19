@@ -17,10 +17,10 @@ namespace AccesoDatos
 
         //METODOS:
         // TODO: ABRIR CONEXION (cadena de conexion aca)
-        public bool AbrirConexion(string path = "server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true")
-        {
             //cadena manu = "server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true"
             //cadena facu = "server=.; database = CATALOGO_P3_DB; integrated security = true"
+        public bool AbrirConexion(string path = "server=.; database = CATALOGO_P3_DB; integrated security = true")
+        {
             try
             {
                 connection = new SqlConnection(path);

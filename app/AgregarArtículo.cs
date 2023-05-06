@@ -48,8 +48,8 @@ namespace app
                     lblModificar.Visible = true;
                     lblCarga.Visible = false;
                     cargarFormulario(articulo);
-                    cboMarca.SelectedValue = articulo.marca.idMarca;
-                    cboCategoria.SelectedValue = articulo.categoria.idCategoria;
+                    cboMarca.SelectedValue = articulo.marca.idMarca + 1;
+                    cboCategoria.SelectedValue = articulo.categoria.idCategoria + 1;
                 }
                 
 
@@ -87,7 +87,7 @@ namespace app
                 if(articulo.id != 0)
                 {
                     res += negocioArticulo.Modificar(articulo);
-                    res += negocioArticulo.AgregarImg(articulo.id, articulo.UrlImagen);
+                    res += negocioArticulo.ModificarImg(articulo.id, articulo.UrlImagen);
                 }
                 else
                 {
@@ -145,5 +145,6 @@ namespace app
             // Hay que ver como hacer que los cbo carguen con la categoria y marca correcta ...
 
         }
-    }
+
+    }//Fin
 }

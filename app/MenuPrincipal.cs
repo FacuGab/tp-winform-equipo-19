@@ -45,12 +45,12 @@ namespace app
         {
             Application.Exit();
         }
-
+        //TODO: BOTON LISTADO
         private void btnListado_Click(object sender, EventArgs e)
         {
             frmPanelPrincipal frmPanelPrincipal = new frmPanelPrincipal(); 
             frmPanelPrincipal.MdiParent = this;
             frmPanelPrincipal.Show();
         }
-    }
+    }//Fin
 }
