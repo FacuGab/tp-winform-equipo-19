@@ -43,6 +43,7 @@
             this.tbFiltroNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnFiltrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAñadirArt)).BeginInit();
@@ -53,6 +54,7 @@
             // 
             // dgvPanel
             // 
+            this.dgvPanel.BackgroundColor = System.Drawing.Color.Silver;
             this.dgvPanel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPanel.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPanel.Location = new System.Drawing.Point(27, 103);
@@ -64,12 +66,14 @@
             // 
             // btnActualizar
             // 
+            this.btnActualizar.BackColor = System.Drawing.Color.Transparent;
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnActualizar.Location = new System.Drawing.Point(320, 476);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(105, 35);
             this.btnActualizar.TabIndex = 1;
             this.btnActualizar.Text = "    Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.UseVisualStyleBackColor = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // btnAgregar
@@ -100,6 +104,7 @@
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "    Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // pbxArticuloLoad
             // 
@@ -129,6 +134,7 @@
             this.pbActualizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbActualizar.TabIndex = 7;
             this.pbActualizar.TabStop = false;
+            this.pbActualizar.Click += new System.EventHandler(this.pbActualizar_Click);
             // 
             // pbEliminar
             // 
@@ -185,12 +191,23 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "la grilla antes de oprimir el botón necesario.";
             // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Location = new System.Drawing.Point(430, 77);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
+            this.btnFiltrar.TabIndex = 14;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
             // frmVentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1114, 531);
+            this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbFiltroNombre);
@@ -205,6 +222,7 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.dgvPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmVentanaPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Articulos";
@@ -236,5 +254,6 @@
         private System.Windows.Forms.TextBox tbFiltroNombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnFiltrar;
     }
 }

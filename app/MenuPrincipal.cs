@@ -45,5 +45,12 @@ namespace app
         {
             Application.Exit();
         }
+
+        private void btnListado_Click(object sender, EventArgs e)
+        {
+            frmPanelPrincipal frmPanelPrincipal = new frmPanelPrincipal(); 
+            frmPanelPrincipal.MdiParent = this;
+            frmPanelPrincipal.Show();
+        }
     }
 }

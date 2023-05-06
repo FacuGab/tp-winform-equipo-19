@@ -23,7 +23,7 @@ namespace app
         }
         public frmAgregarArt(Articulo art)
         {
-            articulo = art;
+            this.articulo = art;
             InitializeComponent();
         }
 
@@ -34,16 +34,25 @@ namespace app
             negocio = new NegocioArticulo();
             try
             {
-                if(articulo != null ) 
+                lblModificar.Visible = false;
+                lblCarga.Visible = true;
+                cboMarca.DataSource = negocio.LeerMarcas();
+                cboMarca.ValueMember = "idMarca";
+                cboMarca.DisplayMember = "marca";
+                cboCategoria.DataSource = negocio.LeerCategorias();
+                cboCategoria.ValueMember = "idCategoria";
+                cboCategoria.DisplayMember = "categoria";
+
+                if (articulo != null ) 
                 {
+                    lblModificar.Visible = true;
+                    lblCarga.Visible = false;
                     cargarFormulario(articulo);
+                    cboMarca.SelectedValue = articulo.marca.idMarca;
+                    cboCategoria.SelectedValue = articulo.categoria.idCategoria;
                 }
-                else
-                {
-                    cboCategoria.DataSource = negocio.LeerCategorias();
-                    cboMarca.DataSource = negocio.LeerMarcas();
-                    // aca podria ir un pbxCargaImg.Load o ver como ponerle una img por defecto de fondo cuando carga sin traer datos
-                }
+                
+
             }
             catch (Exception ex)
             {
@@ -59,21 +68,32 @@ namespace app
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             //TODO: Agregar Articulo
-            Articulo art = new Articulo();
             NegocioArticulo negocioArticulo = new NegocioArticulo();
             int res = 0;
             try 
             {
-                art.codigo = txtCodArt.Text;
-                art.descripicion = txtDescrip.Text;
-                art.UrlImagen = txtUrl.Text;
-                art.precio = decimal.Parse(txtPrecio.Text);
-                art.nombre = txtNombre.Text;
-                art.categoria = (Categoria)cboCategoria.SelectedItem;
-                art.marca = (Marca)cboMarca.SelectedItem;
+                if(articulo == null)
+                {
+                    articulo = new Articulo();
+                }
+                articulo.codigo = txtCodArt.Text;
+                articulo.descripicion = txtDescrip.Text;
+                articulo.UrlImagen = txtUrl.Text;
+                articulo.precio = decimal.Parse(txtPrecio.Text);
+                articulo.nombre = txtNombre.Text;
+                articulo.categoria = (Categoria)cboCategoria.SelectedItem;
+                articulo.marca = (Marca)cboMarca.SelectedItem;
 
-                res += negocioArticulo.Agregar(art);
-                res += negocioArticulo.AgregarImg(art.id, art.UrlImagen);
+                if(articulo.id != 0)
+                {
+                    //res += negocioArticulo.Modificar(articulo);
+                    res += negocioArticulo.AgregarImg(articulo.id, articulo.UrlImagen); // aca falta un metodo " modificar img ", Crearlo
+                }
+                else
+                {
+                    res += negocioArticulo.Agregar(articulo);
+                    res += negocioArticulo.AgregarImg(articulo.id, articulo.UrlImagen);
+                }
 
                 if (res > 1)
                     MessageBox.Show("Articulo Guardado");
@@ -110,12 +130,20 @@ namespace app
             txtNombre.Text = articulo.nombre;
             txtDescrip.Text = articulo.descripicion;
             txtPrecio.Text = articulo.precio.ToString();
-            pbxCargaImg.Load(articulo.UrlImagen);
+            txtUrl.Text = articulo.UrlImagen;
+            
+            try
+            {
+                pbxCargaImg.Load(articulo.UrlImagen);
+            }
+            catch (Exception)
+            {
+                cargarImg("https://images.wondershare.com/repairit/aticle/2021/07/resolve-images-not-showing-problem-1.jpg");
+                MessageBox.Show("Se requiere reemplazar la imágen");
+            }
 
             // Hay que ver como hacer que los cbo carguen con la categoria y marca correcta ...
-            negocio = new NegocioArticulo();
-            cboCategoria.DataSource = negocio.LeerCategorias();
-            cboMarca.DataSource = negocio.LeerMarcas();
+
         }
     }
 }
