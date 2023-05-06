@@ -168,8 +168,35 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
         //TODO: Modificar artículo (falta agregar el metodo modificar)
-        
+        public int Modificar(Articulo nuevoArticulo)
+        {
+            try
+            {
+                Database datos = new Database();
+                datos.AbrirConexion();
+                string query = "UPDATE ARTICULOS SET Codigo='@codigo',Nombre='@nombre', Descripcion='@descripcion', IdMarca=@marca, IdCategoria=@categoria, Precio=@precio WHERE ID=@id" ;
+                datos.setQuery(query);
+                datos.setearParamento("@id", nuevoArticulo.id);
+                datos.setearParamento("@codigo", nuevoArticulo.codigo);
+                datos.setearParamento("@nombre", nuevoArticulo.nombre);
+                datos.setearParamento("@descripcion", nuevoArticulo.descripicion);
+                datos.setearParamento("@categoria", nuevoArticulo.categoria.idCategoria);
+                datos.setearParamento("@marca", nuevoArticulo.marca.idMarca);
+                datos.setearParamento("@precio", nuevoArticulo.precio);
+                return datos.executeQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            //finally
+            //{
+            //    datos.CerrarConexion();
+            //}
+        }
         //TODO: Agregar url Img
         public int AgregarImg(int idArt, string urlImg)
         {

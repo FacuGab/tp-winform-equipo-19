@@ -34,6 +34,8 @@ namespace app
             negocio = new NegocioArticulo();
             try
             {
+                lblModificar.Visible = false;
+                lblCarga.Visible = true;
                 cboMarca.DataSource = negocio.LeerMarcas();
                 cboMarca.ValueMember = "idMarca";
                 cboMarca.DisplayMember = "marca";
@@ -43,10 +45,13 @@ namespace app
 
                 if (articulo != null ) 
                 {
+                    lblModificar.Visible = true;
+                    lblCarga.Visible = false;
                     cargarFormulario(articulo);
                     cboMarca.SelectedValue = articulo.marca.idMarca;
                     cboCategoria.SelectedValue = articulo.categoria.idCategoria;
                 }
+                
 
             }
             catch (Exception ex)
@@ -81,7 +86,8 @@ namespace app
 
                 if(articulo.id != 0)
                 {
-
+                    res += negocioArticulo.Modificar(articulo);
+                    res += negocioArticulo.AgregarImg(articulo.id, articulo.UrlImagen);
                 }
                 else
                 {

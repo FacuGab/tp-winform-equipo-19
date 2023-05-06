@@ -53,6 +53,7 @@
             // 
             // dgvPanel
             // 
+            this.dgvPanel.BackgroundColor = System.Drawing.Color.Silver;
             this.dgvPanel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPanel.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPanel.Location = new System.Drawing.Point(27, 103);
@@ -64,13 +65,14 @@
             // 
             // btnActualizar
             // 
+            this.btnActualizar.BackColor = System.Drawing.Color.Transparent;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnActualizar.Location = new System.Drawing.Point(320, 476);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(105, 35);
             this.btnActualizar.TabIndex = 1;
             this.btnActualizar.Text = "    Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.UseVisualStyleBackColor = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // btnAgregar
@@ -191,7 +193,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1114, 531);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -207,6 +209,7 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.dgvPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmVentanaPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Articulos";

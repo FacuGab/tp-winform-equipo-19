@@ -57,6 +57,8 @@ namespace app
             Articulo art = (Articulo)dgvPanel.CurrentRow.DataBoundItem;
             frmAgregarArt frmAgregarArt = new frmAgregarArt(art);
             frmAgregarArt.ShowDialog();
+            
+            
         }
         //TODO: METODOS frmVentanaPrincipal
         //TODO: Cargar Imagen
