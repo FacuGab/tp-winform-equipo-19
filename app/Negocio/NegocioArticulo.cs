@@ -148,11 +148,11 @@ namespace Negocio
             {
                 datos = new Database();
                 datos.AbrirConexion(); // CADENA DE CONEXION A LA BD (ir a Database.cs para cambiar la cadena)
-                string query = $"INSERT INTO ARTICULOS VALUES ('@codigo', '@nombre', '@descripcion', @marca, @categoria, @precio)";
+                string query = $"INSERT INTO ARTICULOS VALUES (@codigo, @nombre, @descripcion, @marca, @categoria, @precio)";
                 datos.setQuery(query);
                 datos.setearParamento("@codigo", nuevoArticulo.codigo);
                 datos.setearParamento("@nombre", nuevoArticulo.nombre);
-                datos.setearParamento("@descrpicion", nuevoArticulo.descripicion);
+                datos.setearParamento("@descripcion", nuevoArticulo.descripicion);
                 datos.setearParamento("@categoria", nuevoArticulo.categoria.idCategoria);
                 datos.setearParamento("@marca", nuevoArticulo.marca.idMarca);
                 datos.setearParamento("@precio", nuevoArticulo.precio);
@@ -169,14 +169,14 @@ namespace Negocio
             }
         }
 
-        //TODO: Modificar artículo (falta agregar el metodo modificar)
+        //TODO: Modificar artículo (HAY QUE REVISAR LA QUERY PRINCIPAL QUE NO TRAE LOS NUEVOS ARTÍCULOS)
         public int Modificar(Articulo nuevoArticulo)
         {
             try
             {
                 Database datos = new Database();
                 datos.AbrirConexion();
-                string query = "UPDATE ARTICULOS SET Codigo='@codigo',Nombre='@nombre', Descripcion='@descripcion', IdMarca=@marca, IdCategoria=@categoria, Precio=@precio WHERE ID=@id" ;
+                string query = "UPDATE ARTICULOS SET Codigo=@codigo,Nombre=@nombre, Descripcion=@descripcion, IdMarca=@marca, IdCategoria=@categoria, Precio=@precio WHERE ID=@id" ;
                 datos.setQuery(query);
                 datos.setearParamento("@id", nuevoArticulo.id);
                 datos.setearParamento("@codigo", nuevoArticulo.codigo);
@@ -192,10 +192,34 @@ namespace Negocio
 
                 throw ex;
             }
-            //finally
-            //{
-            //    datos.CerrarConexion();
-            //}
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        //TODO: Eliminar Artículo
+        public  int Eliminar(int id)
+        {
+            try
+            {
+                Database datos = new Database();
+                datos.AbrirConexion();
+                string query = "Delete from Articulos WHERE ID = @id";
+                datos.setQuery(query);
+                datos.setearParamento("@id", id);
+
+                return datos.executeQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
         //TODO: Agregar url Img
         public int AgregarImg(int idArt, string urlImg)

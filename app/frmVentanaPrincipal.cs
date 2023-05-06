@@ -78,5 +78,39 @@ namespace app
         {
 
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            try
+            {
+                seleccionado = (Articulo)dgvPanel.CurrentRow.DataBoundItem;
+                DialogResult r = MessageBox.Show("Desea eliminar el artículo?", "Eliminar",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                if (r == DialogResult.OK)
+                { 
+                    negocio.Eliminar(seleccionado.id);
+                    MessageBox.Show("Artículo eliminado exitosamente!");
+                    dgvPanel.DataSource = negocio.Leer();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        //TODO:FILTROS
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            listaFiltrada = ListaArticulos.FindAll(x => x.nombre == tbFiltroNombre.Text);
+            dgvPanel.DataSource = null;
+            dgvPanel.DataSource = listaFiltrada;
+
+        }
     }
 }
