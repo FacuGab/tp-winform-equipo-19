@@ -31,7 +31,7 @@ namespace Negocio
                 articulos = new List<Articulo>();
                 datos = new Database();
 
-                // CADENA DE CONEXION A LA BD EN Database.cs (sino hay que cambiar todos las cadenas de todos los metodos, ir a Database para cambiarlo de forma unificada)
+                // CADENA DE CONEXION A LA BD EN Database.cs
                 datos.AbrirConexion();
                 datos.setQuery("SELECT A.Id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio, I.ImagenUrl  as URL FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria INNER JOIN MARCAS M on M.Id = A.IdMarca LEFT JOIN IMAGENES I on I.IdArticulo = A.Id");    
                 datos.readData();
@@ -44,8 +44,15 @@ namespace Negocio
                     artAux.codigo = lector["Codigo"].ToString();
                     artAux.nombre = lector["Nombre"].ToString();
                     artAux.descripicion = lector["Descripcion"].ToString();
+
                     artAux.marca = new Marca(lector["Marca"].ToString());
+                    artAux.marca.idMarca = (int)lector["Id"];
+                    artAux.marca.marca = lector["Marca"].ToString();
+
                     artAux.categoria = new Categoria(lector["Categoria"].ToString());
+                    artAux.categoria.idCategoria = (int)lector["Id"];
+                    artAux.categoria.categoria = lector["Categoria"].ToString();
+
                     artAux.precio = Convert.ToDecimal(lector["Precio"]);
                     if (!(lector["URL"] is DBNull))
                         artAux.UrlImagen = lector["URL"].ToString(); // cuidado, si tiene mas fotos no se como cargarlas, hay que usar una query y modo distinto

@@ -18,7 +18,7 @@ namespace AccesoDatos
             //cadena facu = "server=.; database = CATALOGO_P3_DB; integrated security = true"
         //METODOS:
         // TODO: ABRIR CONEXION (cadena de conexion aca)
-        public bool AbrirConexion(string path = "server=.; database = CATALOGO_P3_DB; integrated security = true")
+        public bool AbrirConexion(string path = "server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true")
         {
             try
             {
@@ -26,9 +26,11 @@ namespace AccesoDatos
                 connection.Open();
                 return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw ex;
+                connection = new SqlConnection("server=.; database = CATALOGO_P3_DB; integrated security = true");
+                connection.Open();
+                return true;
             }
             catch (Exception ex)
             {
@@ -96,7 +98,14 @@ namespace AccesoDatos
         //TODO: SETEAR PARAMETROS
         public void setearParamento(string nombre, object valor)
         {
-            command.Parameters.AddWithValue(nombre, valor);
+            try
+            {
+                command.Parameters.AddWithValue(nombre, valor);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }//fin
 }
