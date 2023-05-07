@@ -115,6 +115,7 @@ select * from MARCAS
 select * from IMAGENES where Id = 13
 select IdArticulo, ImagenUrl from IMAGENES
 select * from IMAGENES where Id = 11
+select * from IMAGENES
 select * from ARTICULOS
 GO
 
