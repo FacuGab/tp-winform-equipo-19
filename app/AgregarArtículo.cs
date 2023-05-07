@@ -37,10 +37,10 @@ namespace app
                 lblModificar.Visible = false;
                 lblCarga.Visible = true;
                 cboMarca.DataSource = negocio.LeerMarcas();
-                cboMarca.ValueMember = "idMarca";
+                cboMarca.ValueMember = "IdMarca";
                 cboMarca.DisplayMember = "marca";
                 cboCategoria.DataSource = negocio.LeerCategorias();
-                cboCategoria.ValueMember = "idCategoria";
+                cboCategoria.ValueMember = "IdCategoria";
                 cboCategoria.DisplayMember = "categoria";
 
                 if (articulo != null ) 
@@ -48,8 +48,8 @@ namespace app
                     lblModificar.Visible = true;
                     lblCarga.Visible = false;
                     cargarFormulario(articulo);
-                    cboMarca.SelectedValue = articulo.marca.idMarca + 1;
-                    cboCategoria.SelectedValue = articulo.categoria.idCategoria + 1;
+                    cboMarca.SelectedValue = articulo.marca.idMarca;
+                    cboCategoria.SelectedValue = articulo.categoria.idCategoria;
                 }
                 
 
@@ -116,6 +116,7 @@ namespace app
                 {
                     MessageBox.Show("Ocurrio un error en la carga de datos");
                 }
+
 
             }
             catch(Exception ex) 
