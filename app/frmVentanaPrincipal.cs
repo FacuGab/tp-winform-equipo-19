@@ -57,9 +57,7 @@ namespace app
         {
             Articulo art = (Articulo)dgvPanel.CurrentRow.DataBoundItem;
             frmAgregarArt frmAgregarArt = new frmAgregarArt(art);
-            frmAgregarArt.ShowDialog();
-            
-            
+            frmAgregarArt.ShowDialog();   
         }
         //TODO: BOTON ELEMINAR
         private void btnEliminar_Click(object sender, EventArgs e)

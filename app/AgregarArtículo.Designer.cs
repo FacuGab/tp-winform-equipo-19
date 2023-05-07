@@ -48,13 +48,13 @@
             this.cboMarca = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panelImg = new System.Windows.Forms.Panel();
-            this.pbxCargaImg = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbxCargaImg = new System.Windows.Forms.PictureBox();
             this.lblCarga = new System.Windows.Forms.Label();
             this.lblModificar = new System.Windows.Forms.Label();
             this.panelImg.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxCargaImg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxCargaImg)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCodArt
@@ -104,6 +104,7 @@
             this.btnCargarImg.TabIndex = 7;
             this.btnCargarImg.Text = "       Cargar ";
             this.btnCargarImg.UseVisualStyleBackColor = true;
+            this.btnCargarImg.Click += new System.EventHandler(this.btnCargarImg_Click);
             // 
             // btnAceptar
             // 
@@ -248,15 +249,6 @@
             this.panelImg.Size = new System.Drawing.Size(374, 230);
             this.panelImg.TabIndex = 19;
             // 
-            // pbxCargaImg
-            // 
-            this.pbxCargaImg.Location = new System.Drawing.Point(178, 9);
-            this.pbxCargaImg.Name = "pbxCargaImg";
-            this.pbxCargaImg.Size = new System.Drawing.Size(183, 209);
-            this.pbxCargaImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxCargaImg.TabIndex = 8;
-            this.pbxCargaImg.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -266,6 +258,15 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 22;
             this.pictureBox1.TabStop = false;
+            // 
+            // pbxCargaImg
+            // 
+            this.pbxCargaImg.Location = new System.Drawing.Point(178, 9);
+            this.pbxCargaImg.Name = "pbxCargaImg";
+            this.pbxCargaImg.Size = new System.Drawing.Size(183, 209);
+            this.pbxCargaImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxCargaImg.TabIndex = 8;
+            this.pbxCargaImg.TabStop = false;
             // 
             // lblCarga
             // 
@@ -317,8 +318,8 @@
             this.Load += new System.EventHandler(this.frmAgregarArt_Load);
             this.panelImg.ResumeLayout(false);
             this.panelImg.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxCargaImg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxCargaImg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

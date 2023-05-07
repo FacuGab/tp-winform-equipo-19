@@ -18,7 +18,7 @@ namespace AccesoDatos
             //cadena facu = "server=.; database = CATALOGO_P3_DB; integrated security = true"
         //METODOS:
         // TODO: ABRIR CONEXION (cadena de conexion aca)
-        public bool AbrirConexion(string path = "server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true")
+        public bool AbrirConexion(string path = "server=.; database = CATALOGO_P3_DB; integrated security = true")
         {
             try
             {
@@ -28,7 +28,7 @@ namespace AccesoDatos
             }
             catch (SqlException)
             {
-                connection = new SqlConnection("server=.; database = CATALOGO_P3_DB; integrated security = true");
+                connection = new SqlConnection("server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true");
                 connection.Open();
                 return true;
             }

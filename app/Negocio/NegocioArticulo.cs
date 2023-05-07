@@ -153,7 +153,7 @@ namespace Negocio
                 datos.setQuery(query);
                 datos.setearParamento("@codigo", nuevoArticulo.codigo);
                 datos.setearParamento("@nombre", nuevoArticulo.nombre);
-                datos.setearParamento("@descrpicion", nuevoArticulo.descripicion);
+                datos.setearParamento("@descripcion", nuevoArticulo.descripicion);
                 datos.setearParamento("@categoria", nuevoArticulo.categoria.idCategoria);
                 datos.setearParamento("@marca", nuevoArticulo.marca.idMarca);
                 datos.setearParamento("@precio", nuevoArticulo.precio);
@@ -213,7 +213,6 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally

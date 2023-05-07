@@ -10,6 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Configuration;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace app
 {
@@ -17,6 +20,7 @@ namespace app
     {
         private Articulo articulo = null;
         private NegocioArticulo negocio;
+        private OpenFileDialog file = null;
         public frmAgregarArt()
         {
             InitializeComponent();
@@ -71,6 +75,7 @@ namespace app
             NegocioArticulo negocioArticulo = new NegocioArticulo();
             int resArt = 0;
             int resImg = 0;
+            bool resFichero = false;
             try 
             {
                 if(articulo == null)
@@ -89,6 +94,7 @@ namespace app
                 {
                     resArt += negocioArticulo.Modificar(articulo);
                     resImg += negocioArticulo.ModificarImg(articulo.id, articulo.UrlImagen);
+                    resFichero = guardarImgFichero(file); // retorna un bool, se puede usar a futuro para cortar la carga por si existe una img igual, o cualquier otra cosa. Ver si hay tiempo
                 }
                 else
                 {
@@ -96,27 +102,14 @@ namespace app
                     {
                         resArt += negocioArticulo.Agregar(articulo);
                         resImg += negocioArticulo.AgregarImg(articulo.id, articulo.UrlImagen);
+                        resFichero = guardarImgFichero(file);
                     }
                     else
                     {
                         MessageBox.Show("Hay que agregar una imagen para continuar");
                     }
                 }
-
-                if (resArt > 0 && resImg > 0)
-                {
-                    MessageBox.Show("Articulo Guardado/Modificado");
-                    Close();
-                }
-                else if(resImg == 0)
-                {
-                    MessageBox.Show("Articulo guardado/modificado sin Imagen");
-                }
-                else
-                {
-                    MessageBox.Show("Ocurrio un error en la carga de datos");
-                }
-
+                confirmacion(resArt, resImg);
 
             }
             catch(Exception ex) 
@@ -164,6 +157,64 @@ namespace app
             // Hay que ver como hacer que los cbo carguen con la categoria y marca correcta ...
 
         }
-
+        //TODO: METODO CARGAR IMG desde fichero
+        private void btnCargarImg_Click(object sender, EventArgs e)
+        {
+            file = new OpenFileDialog();
+            try
+            {
+                file.Filter = "jpg|*.jpg;|png|*.png";
+                if(file.ShowDialog() == DialogResult.OK) 
+                {
+                    txtUrl.Text = file.FileName;
+                    cargarImg(file.FileName);
+                    
+                    //termina de guardar archivo en Boton aceptar
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        //TODO: METODO GUARDAR FICHERO IMG LOCAL
+        private bool guardarImgFichero(OpenFileDialog fileDialog)
+        {
+            string path = ConfigurationManager.AppSettings["image-folder"] + fileDialog.SafeFileName;
+            try
+            {
+                if(fileDialog != null)
+                {
+                    File.Copy(fileDialog.FileName, path);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            { 
+                fileDialog.Dispose(); // creo que no hace falta usarlo, ya que File funciona como una clase estatica mepa
+            }
+        }
+        //TODO: METODO MOSTRAR RESULTADOS DE CARGA
+        private void confirmacion(int resart, int resimg)
+        {
+            if (resart > 0 && resimg > 0)
+            {
+                MessageBox.Show("Articulo Guardado/Modificado");
+                Close();
+            }
+            else if (resimg == 0)
+            {
+                MessageBox.Show("Articulo guardado/modificado sin Imagen");
+            }
+            else
+            {
+                MessageBox.Show("Ocurrio un error en la carga de datos");
+            }
+        }
     }//Fin
 }
