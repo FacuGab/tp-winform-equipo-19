@@ -33,7 +33,7 @@ namespace Negocio
 
                 // CADENA DE CONEXION A LA BD EN Database.cs
                 datos.AbrirConexion();
-                datos.setQuery("SELECT A.Id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio, I.ImagenUrl  as URL FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria INNER JOIN MARCAS M on M.Id = A.IdMarca LEFT JOIN IMAGENES I on I.IdArticulo = A.Id");    
+                datos.setQuery("SELECT A.Id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion as Marca, M.Id as IdMarca, C.Descripcion as Categoria, C.Id as IdCategoria, Precio, I.ImagenUrl  as URL FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria INNER JOIN MARCAS M on M.Id = A.IdMarca LEFT JOIN IMAGENES I on I.IdArticulo = A.Id");    
                 datos.readData();
                 lector = datos.reader;
 
@@ -46,11 +46,11 @@ namespace Negocio
                     artAux.descripicion = lector["Descripcion"].ToString();
 
                     artAux.marca = new Marca(lector["Marca"].ToString());
-                    artAux.marca.idMarca = (int)lector["Id"];
+                    artAux.marca.idMarca = (int)lector["IdMarca"];
                     artAux.marca.marca = lector["Marca"].ToString();
 
                     artAux.categoria = new Categoria(lector["Categoria"].ToString());
-                    artAux.categoria.idCategoria = (int)lector["Id"];
+                    artAux.categoria.idCategoria = (int)lector["IdCategoria"];
                     artAux.categoria.categoria = lector["Categoria"].ToString();
 
                     artAux.precio = Convert.ToDecimal(lector["Precio"]);

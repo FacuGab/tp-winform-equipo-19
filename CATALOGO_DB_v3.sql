@@ -122,7 +122,7 @@ GO
 -- 
 
 -- TODOS LOS ARTICULOS 
-SELECT A.Id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio, I.ImagenUrl 
+SELECT A.Id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion as Marca, M.Id as IdMarca, C.Descripcion as Categoria, C.Id as IdCategoria, Precio, I.ImagenUrl 
 FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria 
 INNER JOIN MARCAS M on M.Id = A.IdMarca LEFT JOIN IMAGENES I on I.IdArticulo = A.Id
 

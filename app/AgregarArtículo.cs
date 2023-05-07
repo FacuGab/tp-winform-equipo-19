@@ -52,8 +52,8 @@ namespace app
                     lblModificar.Visible = true;
                     lblCarga.Visible = false;
                     cargarFormulario(articulo);
-                    cboMarca.SelectedValue = articulo.marca.idMarca;
-                    cboCategoria.SelectedValue = articulo.categoria.idCategoria;
+                    cboMarca.SelectedIndex = articulo.marca.idMarca;
+                    cboCategoria.SelectedIndex = articulo.categoria.idCategoria;
                 }
                 
 
@@ -143,6 +143,8 @@ namespace app
             txtDescrip.Text = articulo.descripicion;
             txtPrecio.Text = articulo.precio.ToString();
             txtUrl.Text = articulo.UrlImagen;
+            cboCategoria.SelectedValue = articulo.categoria.idCategoria;
+            cboMarca.SelectedValue = articulo.marca.idMarca;
             
             try
             {
