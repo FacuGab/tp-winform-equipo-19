@@ -14,11 +14,10 @@ namespace AccesoDatos
         public SqlDataReader reader { get; set; }
         private SqlConnection connection;
         private SqlCommand command;
-
-        //METODOS:
-        // TODO: ABRIR CONEXION (cadena de conexion aca)
             //cadena manu = "server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true"
             //cadena facu = "server=.; database = CATALOGO_P3_DB; integrated security = true"
+        //METODOS:
+        // TODO: ABRIR CONEXION (cadena de conexion aca)
         public bool AbrirConexion(string path = "server=.; database = CATALOGO_P3_DB; integrated security = true")
         {
             try
@@ -45,8 +44,7 @@ namespace AccesoDatos
                 reader?.Dispose();
                 command?.Dispose();
                 connection.Close();
-                connection.Dispose();
-                // ¿ que hace realmente el Dispose, elimina todos los recursos asociados al obj instaciado ?
+                connection.Dispose();// ¿ que hace realmente el Dispose, elimina todos los recursos asociados al obj instaciado ?
             }
             catch (Exception ex)
             {

@@ -33,7 +33,7 @@ namespace Negocio
 
                 // CADENA DE CONEXION A LA BD EN Database.cs (sino hay que cambiar todos las cadenas de todos los metodos, ir a Database para cambiarlo de forma unificada)
                 datos.AbrirConexion();
-                datos.setQuery("SELECT A.Id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio, I.ImagenUrl  as URL FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria INNER JOIN MARCAS M on M.Id = A.IdMarca INNER JOIN IMAGENES I on I.IdArticulo = A.Id");    
+                datos.setQuery("SELECT A.Id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio, I.ImagenUrl  as URL FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria INNER JOIN MARCAS M on M.Id = A.IdMarca LEFT JOIN IMAGENES I on I.IdArticulo = A.Id");    
                 datos.readData();
                 lector = datos.reader;
 
@@ -44,15 +44,8 @@ namespace Negocio
                     artAux.codigo = lector["Codigo"].ToString();
                     artAux.nombre = lector["Nombre"].ToString();
                     artAux.descripicion = lector["Descripcion"].ToString();
-
                     artAux.marca = new Marca(lector["Marca"].ToString());
-                    artAux.marca.idMarca = (int)lector["Id"];
-                    artAux.marca.marca = lector["Marca"].ToString();
-
                     artAux.categoria = new Categoria(lector["Categoria"].ToString());
-                    artAux.categoria.idCategoria = (int)lector["Id"];
-                    artAux.categoria.categoria = lector["Categoria"].ToString();
-
                     artAux.precio = Convert.ToDecimal(lector["Precio"]);
                     if (!(lector["URL"] is DBNull))
                         artAux.UrlImagen = lector["URL"].ToString(); // cuidado, si tiene mas fotos no se como cargarlas, hay que usar una query y modo distinto
@@ -148,12 +141,12 @@ namespace Negocio
             try
             {
                 datos = new Database();
-                datos.AbrirConexion(); // CADENA DE CONEXION A LA BD (ir a Database.cs para cambiar la cadena)
+                datos.AbrirConexion();
                 string query = $"INSERT INTO ARTICULOS VALUES (@codigo, @nombre, @descripcion, @marca, @categoria, @precio)";
                 datos.setQuery(query);
                 datos.setearParamento("@codigo", nuevoArticulo.codigo);
                 datos.setearParamento("@nombre", nuevoArticulo.nombre);
-                datos.setearParamento("@descripcion", nuevoArticulo.descripicion);
+                datos.setearParamento("@descrpicion", nuevoArticulo.descripicion);
                 datos.setearParamento("@categoria", nuevoArticulo.categoria.idCategoria);
                 datos.setearParamento("@marca", nuevoArticulo.marca.idMarca);
                 datos.setearParamento("@precio", nuevoArticulo.precio);
@@ -174,7 +167,7 @@ namespace Negocio
         {
             try
             {
-                Database datos = new Database();
+                datos = new Database();
                 datos.AbrirConexion();
                 string query = "UPDATE ARTICULOS SET Codigo=@codigo,Nombre=@nombre, Descripcion=@descripcion, IdMarca=@marca, IdCategoria=@categoria, Precio=@precio WHERE ID=@id" ;
                 datos.setQuery(query);
@@ -194,6 +187,7 @@ namespace Negocio
             }
             finally
             {
+                lector?.Close();
                 datos.CerrarConexion();
             }
         }
@@ -202,7 +196,7 @@ namespace Negocio
         {
             try
             {
-                Database datos = new Database();
+                datos = new Database();
                 datos.AbrirConexion();
                 string query = "Delete from Articulos WHERE ID = @id";
                 datos.setQuery(query);
@@ -223,15 +217,64 @@ namespace Negocio
         //TODO: Agregar url Img
         public int AgregarImg(int idArt, string urlImg)
         {
-            // se necesita el id de articulo + el url de la imagen asociada
+            datos = new Database();
             try
             {
                 datos = new Database();
                 datos.AbrirConexion();
-                datos.setQuery("INSERT INTO IMAGENES VALUES (@idarticulo,'@urlimg')");
+                datos.setQuery("INSERT INTO IMAGENES VALUES (@idarticulo, @urlimg)");
                 datos.setearParamento("@idarticulo", idArt);
                 datos.setearParamento("@urlimg", urlImg);
                 return datos.executeQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally 
+            { 
+                lector?.Close();
+                datos.CerrarConexion();
+            }
+        }
+        //TODO: Agregar url Img (privado)
+        private int AgregarImgAux(int idArt, string urlImg)
+        {
+            Database datosImg = new Database();
+            try
+            {
+                datosImg = new Database();
+                datosImg.AbrirConexion();
+                datosImg.setQuery("INSERT INTO IMAGENES VALUES (@idarticulo, @urlimg)");
+                datosImg.setearParamento("@idarticulo", idArt);
+                datosImg.setearParamento("@urlimg", urlImg);
+                return datosImg.executeQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                lector?.Close();
+                datosImg.CerrarConexion();
+            }
+        }
+        //TODO: Modificar Imagen 
+        public int ModificarImg(int Id, string urlImg)
+        {
+            datos = new Database();
+            try
+            {
+                datos.AbrirConexion();
+                datos.setQuery("UPDATE IMAGENES SET ImagenUrl = @urlimg WHERE Id = @id");
+                datos.setearParamento("@urlimg", urlImg);
+                datos.setearParamento("@id", Id);
+
+                if (ComprobarImg(Id))
+                    return datos.executeQuery();
+                else
+                    return AgregarImgAux(Id, urlImg);
             }
             catch (Exception ex)
             {
@@ -243,26 +286,28 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-        //TODO: Modificar Imagen 
-        public int ModificarImg(int Id, string urlImg)
+        //TODO: Comprobar Img
+        public bool ComprobarImg(int idArt)
         {
-            datos= new Database();
+            Database datosAux = new Database();
             try
             {
-                datos.AbrirConexion();
-                datos.setQuery("UPDATE IMAGENES SET ImagenUrl = '@urlimg' WHERE Id = @id");
-                datos.setearParamento("@urlimg", urlImg);
-                datos.setearParamento("@id", Id);
-                return datos.executeQuery();
+                datosAux.AbrirConexion();
+                datosAux.setQuery("SELECT Id FROM IMAGENES WHERE IdArticulo = @id");
+                datosAux.setearParamento("@id", idArt);
+                datosAux.readData();
+                if (datos.reader != null)
+                    return true;
+                else
+                    return false;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally 
-            { 
-                lector?.Close(); 
-                datos.CerrarConexion();
+            finally
+            {
+                datosAux.CerrarConexion();
             }
         }
 

@@ -69,7 +69,8 @@ namespace app
         {
             //TODO: Agregar Articulo
             NegocioArticulo negocioArticulo = new NegocioArticulo();
-            int res = 0;
+            int resArt = 0;
+            int resImg = 0;
             try 
             {
                 if(articulo == null)
@@ -83,28 +84,45 @@ namespace app
                 articulo.nombre = txtNombre.Text;
                 articulo.categoria = (Categoria)cboCategoria.SelectedItem;
                 articulo.marca = (Marca)cboMarca.SelectedItem;
-
+                
                 if(articulo.id != 0)
                 {
-                    res += negocioArticulo.Modificar(articulo);
-                    res += negocioArticulo.ModificarImg(articulo.id, articulo.UrlImagen);
+                    resArt += negocioArticulo.Modificar(articulo);
+                    resImg += negocioArticulo.ModificarImg(articulo.id, articulo.UrlImagen);
                 }
                 else
                 {
-                    res += negocioArticulo.Agregar(articulo);
-                    res += negocioArticulo.AgregarImg(articulo.id, articulo.UrlImagen);
+                    if(!string.IsNullOrEmpty(txtUrl.Text))
+                    {
+                        resArt += negocioArticulo.Agregar(articulo);
+                        resImg += negocioArticulo.AgregarImg(articulo.id, articulo.UrlImagen);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hay que agregar una imagen para continuar");
+                    }
                 }
 
-                if (res > 1)
-                    MessageBox.Show("Articulo Guardado");
+                if (resArt > 0 && resImg > 0)
+                {
+                    MessageBox.Show("Articulo Guardado/Modificado");
+                    Close();
+                }
+                else if(resImg == 0)
+                {
+                    MessageBox.Show("Articulo guardado/modificado sin Imagen");
+                }
                 else
-                    MessageBox.Show("Ocurrio un error al agregar los datos");
+                {
+                    MessageBox.Show("Ocurrio un error en la carga de datos");
+                }
+
             }
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.ToString());
             }
-            Close();
+            
         }
         //TODO: EVEMTO IMAGEN EN CARGA DE ARTICULO
         private void txtUrl_Leave(object sender, EventArgs e)

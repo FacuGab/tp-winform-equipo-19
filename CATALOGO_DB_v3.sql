@@ -105,14 +105,16 @@ insert into imagenes values
 (5, 'https://cnnespanol2.files.wordpress.com/2015/12/gadgets-mc3a1s-populares-apple-tv-2015-18.jpg?quality=100&strip=info&w=460&h=260&crop=1')
 
 
--- POST CREACION --
+------------------------- POST CREACION -----------------------------------
 
 -- correccion de articulo mal cargado
 UPDATE ARTICULOS SET IdCategoria = 1, IdMarca = 5 WHERE Id = 2
 
 select * from CATEGORIAS
 select * from MARCAS
-select * from IMAGENES
+select * from IMAGENES where Id = 13
+select IdArticulo, ImagenUrl from IMAGENES
+select * from IMAGENES where Id = 11
 select * from ARTICULOS
 GO
 
@@ -121,7 +123,7 @@ GO
 -- TODOS LOS ARTICULOS 
 SELECT A.Id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, Precio, I.ImagenUrl 
 FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria 
-INNER JOIN MARCAS M on M.Id = A.IdMarca INNER JOIN IMAGENES I on I.IdArticulo = A.Id
+INNER JOIN MARCAS M on M.Id = A.IdMarca LEFT JOIN IMAGENES I on I.IdArticulo = A.Id
 
 SELECT A.Codigo, A.Nombre, A.Descripcion as Descripcion, M.Descripcion as Marcas, C.Descripcion as Categorias, A.Precio
 FROM ARTICULOS A, MARCAS M, CATEGORIAS C
@@ -129,8 +131,11 @@ WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id
 
 -- INSERT
 INSERT INTO ARTICULOS VALUES ('AAA', 'A', 'a', '1', '1', 1)
-INSERT INTO IMAGENES VALUES (7,'‪E:\Imagenes\080.png')
+INSERT INTO IMAGENES VALUES (1000,'‪E:\Imagenes\080.png')
 
 -- UPDATE
-UPDATE IMAGENES SET ImagenUrl = 'E:\Imagenes\080.png'
+UPDATE IMAGENES SET ImagenUrl = 'E:\Imagenes\080.png' WHERE Id = 1
 
+-- DELETE
+
+DELETE FROM IMAGENES WHERE Id > 7

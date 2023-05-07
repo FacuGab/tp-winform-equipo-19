@@ -36,7 +36,6 @@ namespace app
         //TODO: BOTON ACTUALIZAR
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-
             negocio = new NegocioArticulo();
             dgvPanel.DataSource = negocio.Leer();
             CargarImg( ((Articulo)dgvPanel.CurrentRow.DataBoundItem).UrlImagen );
@@ -92,10 +91,8 @@ namespace app
             List<Articulo> listaFiltrada;
             // ver si crear un metodo auxiliar que carge la lista filtrada para que no quede " poco amigable a la lectura " 
             listaFiltrada = ListaArticulos.FindAll(
-                x => (
-                    x.nombre.ToUpperInvariant() == tbFiltroNombre.Text.ToUpperInvariant() ||
-                    x.nombre.ToUpperInvariant() == tbFiltroNombre.Text.ToUpperInvariant()
-                )
+                x => (x.nombre.ToUpperInvariant() == tbFiltroNombre.Text.ToUpperInvariant() ||
+                    x.nombre.ToUpperInvariant() == tbFiltroNombre.Text.ToUpperInvariant() )
             );
             dgvPanel.DataSource = null;
             dgvPanel.DataSource = listaFiltrada;
@@ -105,7 +102,6 @@ namespace app
         {
             // ¿?
         }
-
         //TODO: METODOS frmVentanaPrincipal
         //TODO: Cargar Imagen
         private void CargarImg(string path)
