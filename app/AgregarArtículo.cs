@@ -52,11 +52,9 @@ namespace app
                     lblModificar.Visible = true;
                     lblCarga.Visible = false;
                     cargarFormulario(articulo);
-                    cboMarca.SelectedIndex = articulo.marca.idMarca;
-                    cboCategoria.SelectedIndex = articulo.categoria.idCategoria;
+                    cboMarca.SelectedIndex = articulo.marca.idMarca - 1;
+                    cboCategoria.SelectedIndex = articulo.categoria.idCategoria - 1;
                 }
-                
-
             }
             catch (Exception ex)
             {
@@ -75,7 +73,7 @@ namespace app
             NegocioArticulo negocioArticulo = new NegocioArticulo();
             int resArt = 0;
             int resImg = 0;
-            bool resFichero = false;
+            int resFichero;
             try 
             {
                 if(articulo == null)
@@ -90,25 +88,44 @@ namespace app
                 articulo.categoria = (Categoria)cboCategoria.SelectedItem;
                 articulo.marca = (Marca)cboMarca.SelectedItem;
                 
-                if(articulo.id != 0)
+                if(articulo.id != 0) //SI ES UN ARTICULO 'YA EXISTENTE'
                 {
-                    resArt += negocioArticulo.Modificar(articulo);
-                    resImg += negocioArticulo.ModificarImg(articulo.id, articulo.UrlImagen);
-                    resFichero = guardarImgFichero(file); // retorna un bool, se puede usar a futuro para cortar la carga por si existe una img igual, o cualquier otra cosa. Ver si hay tiempo
+                    resFichero = guardarImgFichero(file); // 0 si guardo, 1 si la ruta ya existe, 2 si solo se guarda una url en la BD
+                    if(resFichero != 1)
+                    {
+                        resArt += negocioArticulo.Modificar(articulo);
+                        resImg += negocioArticulo.ModificarImg(articulo.id, articulo.UrlImagen);
+                    }
+                    else if(resFichero == 1)
+                    {
+                        MessageBox.Show("La ruta de imagen ya existe");
+                        return;
+                    }
+
                 }
-                else
+                else // SI ES UN ARTICULO NUEVO
                 {
                     if(!string.IsNullOrEmpty(txtUrl.Text))
                     {
-                        resArt += negocioArticulo.Agregar(articulo);
-                        resImg += negocioArticulo.AgregarImg(articulo.id, articulo.UrlImagen);
-                        resFichero = guardarImgFichero(file);
+                        resFichero = guardarImgFichero(file); // 0 si guardo, 1 si la ruta ya existe, 2 si solo se guarda una url en la BD
+                        if (resFichero != 1)
+                        {
+                            resArt += negocioArticulo.Agregar(articulo);
+                            resImg += negocioArticulo.AgregarImg(articulo.id, articulo.UrlImagen);
+                        }
+                        else if (resFichero == 1)
+                        {
+                            MessageBox.Show("La ruta de imagen ya existe");
+                            return;
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Hay que agregar una imagen para continuar");
+                        MessageBox.Show("Hay que agregar una imagen/ruta de imagen para continuar");
+                        return;
                     }
                 }
+
                 confirmacion(resArt, resImg);
 
             }
@@ -168,9 +185,8 @@ namespace app
                 file.Filter = "jpg|*.jpg;|png|*.png";
                 if(file.ShowDialog() == DialogResult.OK) 
                 {
-                    txtUrl.Text = file.FileName;
                     cargarImg(file.FileName);
-                    
+                    txtUrl.Text = file.FileName;
                     //termina de guardar archivo en Boton aceptar
                 }
             }
@@ -180,25 +196,35 @@ namespace app
             }
         }
         //TODO: METODO GUARDAR FICHERO IMG LOCAL
-        private bool guardarImgFichero(OpenFileDialog fileDialog)
+        private int guardarImgFichero(OpenFileDialog fileDialog)
         {
-            string path = ConfigurationManager.AppSettings["image-folder"] + fileDialog.SafeFileName;
-            try
+            if(fileDialog != null) // SI EL USURIO CLIKEO EN CARGAR IMAGEN EN EL FORM
             {
-                if(fileDialog != null)
+                string path = ConfigurationManager.AppSettings["image-folder"] + fileDialog.SafeFileName;
+                try
                 {
-                    File.Copy(fileDialog.FileName, path);
-                    return true;
+                    if(!File.Exists(path))
+                    {
+                        File.Copy(fileDialog.FileName, path);
+                        return 0;
+                    }
+                    else
+                    { 
+                        return 1;
+                    }
                 }
-                return false;
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                { 
+                    fileDialog.Dispose(); // creo que no hace falta usarlo, ya que File funciona como una clase estatica mepa
+                }
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
-            }
-            finally
-            { 
-                fileDialog.Dispose(); // creo que no hace falta usarlo, ya que File funciona como una clase estatica mepa
+                return 2;
             }
         }
         //TODO: METODO MOSTRAR RESULTADOS DE CARGA

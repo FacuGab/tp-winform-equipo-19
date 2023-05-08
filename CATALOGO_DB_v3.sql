@@ -125,6 +125,9 @@ GO
 SELECT A.Id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion as Marca, M.Id as IdMarca, C.Descripcion as Categoria, C.Id as IdCategoria, Precio, I.ImagenUrl 
 FROM ARTICULOS A INNER JOIN CATEGORIAS C on C.Id = A.IdCategoria 
 INNER JOIN MARCAS M on M.Id = A.IdMarca LEFT JOIN IMAGENES I on I.IdArticulo = A.Id
+select IdArticulo, ImagenUrl from IMAGENES
+--exec sp_who2
+
 
 SELECT A.Codigo, A.Nombre, A.Descripcion as Descripcion, M.Descripcion as Marcas, C.Descripcion as Categorias, A.Precio
 FROM ARTICULOS A, MARCAS M, CATEGORIAS C
@@ -139,4 +142,5 @@ UPDATE IMAGENES SET ImagenUrl = 'E:\Imagenes\080.png' WHERE Id = 1
 
 -- DELETE
 
-DELETE FROM IMAGENES WHERE Id > 7
+DELETE FROM IMAGENES 
+DELETE FROM ARTICULOS

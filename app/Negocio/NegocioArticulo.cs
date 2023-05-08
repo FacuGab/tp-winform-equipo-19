@@ -220,41 +220,17 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-        //TODO: Agregar url Img
-        public int AgregarImg(int idArt, string urlImg)
+        //TODO: Agregar Imagen a la bd
+        public int AgregarImg(int id, string urlImagen)
         {
             datos = new Database();
             try
             {
-                datos = new Database();
                 datos.AbrirConexion();
-                datos.setQuery("INSERT INTO IMAGENES VALUES (@idarticulo, @urlimg)");
-                datos.setearParamento("@idarticulo", idArt);
-                datos.setearParamento("@urlimg", urlImg);
+                datos.setQuery("INSERT INTO IMAGENES VALUES (@id, @urlimg)");
+                datos.setearParamento("@urlimg", urlImagen);
+                datos.setearParamento("@id", id);
                 return datos.executeQuery();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally 
-            { 
-                lector?.Close();
-                datos.CerrarConexion();
-            }
-        }
-        //TODO: Agregar url Img (privado)
-        private int AgregarImgAux(int idArt, string urlImg)
-        {
-            Database datosImg = new Database();
-            try
-            {
-                datosImg = new Database();
-                datosImg.AbrirConexion();
-                datosImg.setQuery("INSERT INTO IMAGENES VALUES (@idarticulo, @urlimg)");
-                datosImg.setearParamento("@idarticulo", idArt);
-                datosImg.setearParamento("@urlimg", urlImg);
-                return datosImg.executeQuery();
             }
             catch (Exception ex)
             {
@@ -263,7 +239,7 @@ namespace Negocio
             finally
             {
                 lector?.Close();
-                datosImg.CerrarConexion();
+                datos.CerrarConexion();
             }
         }
         //TODO: Modificar Imagen 
@@ -314,6 +290,51 @@ namespace Negocio
             finally
             {
                 datosAux.CerrarConexion();
+            }
+        }
+
+        // Metodos Internos
+        //TODO: Eliminar Img
+        private int EliminarImgBd(int idArt) // ver si usar
+        {
+            Database datosAux = new Database();
+            try
+            {
+                datosAux.AbrirConexion();
+                datosAux.setQuery("DELETE FROM IMAGENES WHERE Id = @idArt");
+                datosAux.setearParamento("@idart", idArt);
+                return datosAux.executeQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datosAux.CerrarConexion();
+            }
+        }
+        //TODO: Agregar url Img (privado)
+        private int AgregarImgAux(int idArt, string urlImg)
+        {
+            Database datosImg = new Database();
+            try
+            {
+                datosImg = new Database();
+                datosImg.AbrirConexion();
+                datosImg.setQuery("INSERT INTO IMAGENES VALUES (@idarticulo, @urlimg)");
+                datosImg.setearParamento("@idarticulo", idArt);
+                datosImg.setearParamento("@urlimg", urlImg);
+                return datosImg.executeQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                lector?.Close();
+                datosImg.CerrarConexion();
             }
         }
 

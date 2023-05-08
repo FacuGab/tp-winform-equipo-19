@@ -27,6 +27,8 @@ namespace app
         {
             negocio = new NegocioArticulo();
             ListaArticulos = negocio.Leer();
+            
+
             dgvPanel.DataSource = ListaArticulos;
             dgvPanel.Columns["UrlImagen"].Visible = false;
             CargarImg(ListaArticulos[0].UrlImagen);
@@ -69,8 +71,8 @@ namespace app
                 DialogResult r = MessageBox.Show("Desea eliminar el artículo?", "Eliminar", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (r == DialogResult.OK)
                 {
-                    negocio.Eliminar(seleccionado.id);
-                    MessageBox.Show("Artículo eliminado exitosamente!");
+                    if (negocio.Eliminar(seleccionado.id) > 0)
+                        MessageBox.Show("Artículo eliminado exitosamente!");
                     dgvPanel.DataSource = negocio.Leer();
                 }
                 else
@@ -113,6 +115,6 @@ namespace app
                 pbxArticuloLoad.Load("https://www.shutterstock.com/image-vector/no-image-available-vector-illustration-260nw-744886198.jpg");
             }
         }
-        
+
     }//Fin
 }
