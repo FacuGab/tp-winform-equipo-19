@@ -44,6 +44,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnFiltrar = new System.Windows.Forms.Button();
+            this.cboFiltroCategoria = new System.Windows.Forms.ComboBox();
+            this.lblFiltroCategoria = new System.Windows.Forms.Label();
+            this.lblFiltroMarca = new System.Windows.Forms.Label();
+            this.cboFiltroMarca = new System.Windows.Forms.ComboBox();
+            this.cboFiltroCriterio = new System.Windows.Forms.ComboBox();
+            this.lblFiltroCriterio = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAñadirArt)).BeginInit();
@@ -78,12 +84,13 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.BackColor = System.Drawing.Color.Transparent;
             this.btnAgregar.Location = new System.Drawing.Point(611, 476);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(120, 35);
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = "       Añadir Articulo";
-            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnEditar
@@ -159,19 +166,20 @@
             // lblFiltroNombre
             // 
             this.lblFiltroNombre.AutoSize = true;
-            this.lblFiltroNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFiltroNombre.Location = new System.Drawing.Point(24, 49);
+            this.lblFiltroNombre.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblFiltroNombre.Location = new System.Drawing.Point(36, 45);
             this.lblFiltroNombre.Name = "lblFiltroNombre";
-            this.lblFiltroNombre.Size = new System.Drawing.Size(143, 15);
+            this.lblFiltroNombre.Size = new System.Drawing.Size(160, 17);
             this.lblFiltroNombre.TabIndex = 10;
             this.lblFiltroNombre.Text = "Nombre / Código artículo";
             // 
             // tbFiltroNombre
             // 
-            this.tbFiltroNombre.Location = new System.Drawing.Point(27, 77);
+            this.tbFiltroNombre.Location = new System.Drawing.Point(30, 66);
             this.tbFiltroNombre.Name = "tbFiltroNombre";
             this.tbFiltroNombre.Size = new System.Drawing.Size(173, 20);
             this.tbFiltroNombre.TabIndex = 11;
+            this.tbFiltroNombre.TextChanged += new System.EventHandler(this.tbFiltroNombre_TextChanged);
             // 
             // label1
             // 
@@ -193,13 +201,72 @@
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(430, 77);
+            this.btnFiltrar.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.btnFiltrar.Location = new System.Drawing.Point(685, 57);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
+            this.btnFiltrar.Size = new System.Drawing.Size(115, 34);
             this.btnFiltrar.TabIndex = 14;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // cboFiltroCategoria
+            // 
+            this.cboFiltroCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFiltroCategoria.FormattingEnabled = true;
+            this.cboFiltroCategoria.Location = new System.Drawing.Point(230, 65);
+            this.cboFiltroCategoria.Name = "cboFiltroCategoria";
+            this.cboFiltroCategoria.Size = new System.Drawing.Size(121, 21);
+            this.cboFiltroCategoria.TabIndex = 15;
+            this.cboFiltroCategoria.SelectedIndexChanged += new System.EventHandler(this.cboFiltroCategoria_SelectedIndexChanged);
+            // 
+            // lblFiltroCategoria
+            // 
+            this.lblFiltroCategoria.AutoSize = true;
+            this.lblFiltroCategoria.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblFiltroCategoria.Location = new System.Drawing.Point(256, 45);
+            this.lblFiltroCategoria.Name = "lblFiltroCategoria";
+            this.lblFiltroCategoria.Size = new System.Drawing.Size(69, 17);
+            this.lblFiltroCategoria.TabIndex = 16;
+            this.lblFiltroCategoria.Text = "Categoria";
+            // 
+            // lblFiltroMarca
+            // 
+            this.lblFiltroMarca.AutoSize = true;
+            this.lblFiltroMarca.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblFiltroMarca.Location = new System.Drawing.Point(413, 45);
+            this.lblFiltroMarca.Name = "lblFiltroMarca";
+            this.lblFiltroMarca.Size = new System.Drawing.Size(47, 17);
+            this.lblFiltroMarca.TabIndex = 17;
+            this.lblFiltroMarca.Text = "Marca";
+            // 
+            // cboFiltroMarca
+            // 
+            this.cboFiltroMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFiltroMarca.FormattingEnabled = true;
+            this.cboFiltroMarca.Location = new System.Drawing.Point(378, 65);
+            this.cboFiltroMarca.Name = "cboFiltroMarca";
+            this.cboFiltroMarca.Size = new System.Drawing.Size(121, 21);
+            this.cboFiltroMarca.TabIndex = 18;
+            // 
+            // cboFiltroCriterio
+            // 
+            this.cboFiltroCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFiltroCriterio.FormattingEnabled = true;
+            this.cboFiltroCriterio.Location = new System.Drawing.Point(521, 65);
+            this.cboFiltroCriterio.Name = "cboFiltroCriterio";
+            this.cboFiltroCriterio.Size = new System.Drawing.Size(121, 21);
+            this.cboFiltroCriterio.TabIndex = 20;
+            // 
+            // lblFiltroCriterio
+            // 
+            this.lblFiltroCriterio.AutoSize = true;
+            this.lblFiltroCriterio.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblFiltroCriterio.Location = new System.Drawing.Point(559, 45);
+            this.lblFiltroCriterio.Name = "lblFiltroCriterio";
+            this.lblFiltroCriterio.Size = new System.Drawing.Size(52, 17);
+            this.lblFiltroCriterio.TabIndex = 19;
+            this.lblFiltroCriterio.Text = "Criterio";
             // 
             // frmVentanaPrincipal
             // 
@@ -207,6 +274,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1114, 531);
+            this.Controls.Add(this.cboFiltroCriterio);
+            this.Controls.Add(this.lblFiltroCriterio);
+            this.Controls.Add(this.cboFiltroMarca);
+            this.Controls.Add(this.lblFiltroMarca);
+            this.Controls.Add(this.lblFiltroCategoria);
+            this.Controls.Add(this.cboFiltroCategoria);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -255,5 +328,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.ComboBox cboFiltroCategoria;
+        private System.Windows.Forms.Label lblFiltroCategoria;
+        private System.Windows.Forms.Label lblFiltroMarca;
+        private System.Windows.Forms.ComboBox cboFiltroMarca;
+        private System.Windows.Forms.ComboBox cboFiltroCriterio;
+        private System.Windows.Forms.Label lblFiltroCriterio;
     }
 }
