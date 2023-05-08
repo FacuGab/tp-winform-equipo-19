@@ -182,7 +182,7 @@ namespace app
             file = new OpenFileDialog();
             try
             {
-                file.Filter = "jpg|*.jpg;|png|*.png";
+                file.Filter = "jpg|*.jpg;|png|*.png;|jpeg|*.jpeg;|bmp|*.bmp";
                 if(file.ShowDialog() == DialogResult.OK) 
                 {
                     cargarImg(file.FileName);
