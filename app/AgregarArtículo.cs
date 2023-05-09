@@ -21,6 +21,7 @@ namespace app
         private Articulo articulo = null;
         private NegocioArticulo negocio;
         private OpenFileDialog file = null;
+        private string msj = null;
         public frmAgregarArt()
         {
             InitializeComponent();
@@ -80,11 +81,8 @@ namespace app
                 {
                     articulo = new Articulo();
                 }
-                articulo.codigo = txtCodArt.Text;
-                articulo.descripicion = txtDescrip.Text;
-                articulo.UrlImagen = txtUrl.Text;
-                articulo.precio = decimal.Parse(txtPrecio.Text);
-                articulo.nombre = txtNombre.Text;
+                if (!validarInputs(articulo))
+                    return;
                 articulo.categoria = (Categoria)cboCategoria.SelectedItem;
                 articulo.marca = (Marca)cboMarca.SelectedItem;
                 
@@ -125,7 +123,6 @@ namespace app
                         return;
                     }
                 }
-
                 confirmacion(resArt, resImg);
 
             }
@@ -134,6 +131,65 @@ namespace app
                 MessageBox.Show(ex.ToString());
             }
             
+        }
+        //TODO: METODO Validar Entradas
+        private bool validarInputs(Articulo articulo)
+        {
+            if (string.IsNullOrEmpty(txtCodArt.Text))
+            {
+                msj = "Se necesita ingresar un Codigo";
+                MessageBox.Show(msj);
+                return false;
+            }
+            if ( !txtCodArt.Text.All(x => char.IsLetterOrDigit(x)) )
+            {
+                msj = "El codigo solo tiene que contener Numeros o Letras";
+                MessageBox.Show(msj);
+                return false;
+            }
+            if( string.IsNullOrEmpty(txtNombre.Text) )
+            {
+                msj = "Se necesita ingresar un Nombre";
+                MessageBox.Show(msj);
+                return false;
+            }
+            if( !txtNombre.Text.All( x => (char.IsLetterOrDigit(x) || char.IsWhiteSpace(x)) ))
+            {
+                msj = "El nombre solo puede contener letras o numeros";
+                MessageBox.Show(msj);
+                return false;
+            }
+            if( txtNombre.Text.Length > 50 )
+            {
+                msj = "El nombre no puede tener mas de 50 letras";
+                MessageBox.Show(msj);
+                return false;
+            }
+            if( txtDescrip.Text.Length >= 150)
+            {
+                msj = "La descripicion no puede tener mas de 150 letras";
+                MessageBox.Show(msj);
+                return false;
+            }
+            if(string.IsNullOrEmpty(txtPrecio.Text))
+            {
+                msj = "El precio esta mal ingresado";
+                MessageBox.Show(msj);
+                return false;
+            }
+            if( !txtPrecio.Text.All(x => char.IsNumber(x)) )
+            {
+                msj = "El precio esta mal ingresado";
+                MessageBox.Show(msj);
+                return false;
+            }
+
+            articulo.nombre = txtNombre.Text;
+            articulo.codigo = txtCodArt.Text;
+            articulo.descripicion = txtDescrip.Text;
+            articulo.UrlImagen = txtUrl.Text;
+            articulo.precio = decimal.Parse(txtPrecio.Text);
+            return true;
         }
         //TODO: EVEMTO IMAGEN EN CARGA DE ARTICULO
         private void txtUrl_Leave(object sender, EventArgs e)
@@ -182,7 +238,7 @@ namespace app
             file = new OpenFileDialog();
             try
             {
-                file.Filter = "jpg|*.jpg;|png|*.png";
+                file.Filter = "jpg|*.jpg;|png|*.png;|jpeg|*.jpeg;|bmp|*.bmp";
                 if(file.ShowDialog() == DialogResult.OK) 
                 {
                     cargarImg(file.FileName);
@@ -244,5 +300,6 @@ namespace app
                 MessageBox.Show("Ocurrio un error en la carga de datos");
             }
         }
+
     }//Fin
 }

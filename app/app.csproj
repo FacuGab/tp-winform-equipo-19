@@ -53,6 +53,12 @@
     <Compile Include="AgregarArtículo.Designer.cs">
       <DependentUpon>AgregarArtículo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListado.Designer.cs">
+      <DependentUpon>frmListado.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVentanaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AgregarArtículo.resx">
       <DependentUpon>AgregarArtículo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListado.resx">
+      <DependentUpon>frmListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVentanaPrincipal.resx">
       <DependentUpon>frmVentanaPrincipal.cs</DependentUpon>
@@ -109,6 +118,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="AccesoDatos\AccesoDatos.csproj">
+      <Project>{FAEC1694-1340-4E98-AF4A-82FC38CB8CF4}</Project>
+      <Name>AccesoDatos</Name>
+    </ProjectReference>
     <ProjectReference Include="Dominio\Dominio.csproj">
       <Project>{4BD7A35C-9D1D-4489-90D9-1F786F238988}</Project>
       <Name>Dominio</Name>

@@ -16,3 +16,9 @@ C:\Users\Manu\Desktop\TrabajoPracticoProgra\ProyectoWinforms2023\app\Dominio\obj
 C:\Users\Manu\Desktop\TrabajoPracticoProgra\ProyectoWinforms2023\app\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\Manu\Desktop\TrabajoPracticoProgra\ProyectoWinforms2023\app\Dominio\obj\Debug\Dominio.dll
 C:\Users\Manu\Desktop\TrabajoPracticoProgra\ProyectoWinforms2023\app\Dominio\obj\Debug\Dominio.pdb
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Dominio\bin\Debug\Dominio.dll
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Dominio\bin\Debug\Dominio.pdb
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Dominio\obj\Debug\Dominio.dll
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Dominio\obj\Debug\Dominio.pdb

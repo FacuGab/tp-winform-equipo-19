@@ -31,3 +31,14 @@ C:\Users\Manu\Desktop\TrabajoPracticoProgra\ProyectoWinforms2023\app\Negocio\obj
 C:\Users\Manu\Desktop\TrabajoPracticoProgra\ProyectoWinforms2023\app\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\Manu\Desktop\TrabajoPracticoProgra\ProyectoWinforms2023\app\Negocio\obj\Debug\Negocio.dll
 C:\Users\Manu\Desktop\TrabajoPracticoProgra\ProyectoWinforms2023\app\Negocio\obj\Debug\Negocio.pdb
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\bin\Debug\Negocio.dll
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\bin\Debug\AccesoDatos.dll
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\bin\Debug\Dominio.dll
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\bin\Debug\AccesoDatos.pdb
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\bin\Debug\Dominio.pdb
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\obj\Debug\Negocio.dll
+C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\Negocio\obj\Debug\Negocio.pdb

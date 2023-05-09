@@ -25,18 +25,19 @@ namespace AccesoDatos
                 connection = new SqlConnection(path);
                 connection.Open();
                 return true;
+
+
             }
-            catch (SqlException)
+            catch (SqlException ex1)
             {
-                connection = new SqlConnection("server=Manulo-PC\\SQLLABO; database = CATALOGO_P3_DB; integrated security = true");
-                connection.Open();
-                return true;
+                throw ex1;
             }
             catch (Exception ex)
             {
                 throw ex; 
             }
-        }  
+        }
+
         //TODO: CERRAR CONEXION
         public void CerrarConexion()
         {

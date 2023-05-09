@@ -48,9 +48,14 @@ namespace app
         //TODO: BOTON LISTADO
         private void btnListado_Click(object sender, EventArgs e)
         {
-            frmPanelPrincipal frmPanelPrincipal = new frmPanelPrincipal(); 
-            frmPanelPrincipal.MdiParent = this;
-            frmPanelPrincipal.Show();
+            foreach (var item in Application.OpenForms)
+            {
+                if (item.GetType() == typeof(frmListado))
+                    return;
+            }
+            frmListado frmListado = new frmListado();
+            frmListado.MdiParent = this;
+            frmListado.Show();
         }
     }//Fin
 }

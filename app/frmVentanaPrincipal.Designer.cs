@@ -44,6 +44,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnFiltrar = new System.Windows.Forms.Button();
+            this.cboFiltroCategoria = new System.Windows.Forms.ComboBox();
+            this.lblFiltroCategoria = new System.Windows.Forms.Label();
+            this.lblFiltroMarca = new System.Windows.Forms.Label();
+            this.cboFiltroMarca = new System.Windows.Forms.ComboBox();
+            this.cboFiltroCriterio = new System.Windows.Forms.ComboBox();
+            this.lblFiltroCriterio = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAñadirArt)).BeginInit();
@@ -78,12 +86,13 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.BackColor = System.Drawing.Color.Transparent;
             this.btnAgregar.Location = new System.Drawing.Point(611, 476);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(120, 35);
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = "       Añadir Articulo";
-            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnEditar
@@ -134,7 +143,6 @@
             this.pbActualizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbActualizar.TabIndex = 7;
             this.pbActualizar.TabStop = false;
-            this.pbActualizar.Click += new System.EventHandler(this.pbActualizar_Click);
             // 
             // pbEliminar
             // 
@@ -159,19 +167,20 @@
             // lblFiltroNombre
             // 
             this.lblFiltroNombre.AutoSize = true;
-            this.lblFiltroNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFiltroNombre.Location = new System.Drawing.Point(24, 49);
+            this.lblFiltroNombre.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblFiltroNombre.Location = new System.Drawing.Point(27, 45);
             this.lblFiltroNombre.Name = "lblFiltroNombre";
-            this.lblFiltroNombre.Size = new System.Drawing.Size(143, 15);
+            this.lblFiltroNombre.Size = new System.Drawing.Size(160, 17);
             this.lblFiltroNombre.TabIndex = 10;
             this.lblFiltroNombre.Text = "Nombre / Código artículo";
             // 
             // tbFiltroNombre
             // 
-            this.tbFiltroNombre.Location = new System.Drawing.Point(27, 77);
+            this.tbFiltroNombre.Location = new System.Drawing.Point(30, 66);
             this.tbFiltroNombre.Name = "tbFiltroNombre";
             this.tbFiltroNombre.Size = new System.Drawing.Size(173, 20);
             this.tbFiltroNombre.TabIndex = 11;
+            this.tbFiltroNombre.TextChanged += new System.EventHandler(this.tbFiltroNombre_TextChanged);
             // 
             // label1
             // 
@@ -193,13 +202,91 @@
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(430, 77);
+            this.btnFiltrar.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.btnFiltrar.Location = new System.Drawing.Point(752, 57);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
+            this.btnFiltrar.Size = new System.Drawing.Size(115, 34);
             this.btnFiltrar.TabIndex = 14;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // cboFiltroCategoria
+            // 
+            this.cboFiltroCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFiltroCategoria.FormattingEnabled = true;
+            this.cboFiltroCategoria.Location = new System.Drawing.Point(320, 66);
+            this.cboFiltroCategoria.Name = "cboFiltroCategoria";
+            this.cboFiltroCategoria.Size = new System.Drawing.Size(121, 21);
+            this.cboFiltroCategoria.TabIndex = 15;
+            // 
+            // lblFiltroCategoria
+            // 
+            this.lblFiltroCategoria.AutoSize = true;
+            this.lblFiltroCategoria.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblFiltroCategoria.Location = new System.Drawing.Point(346, 46);
+            this.lblFiltroCategoria.Name = "lblFiltroCategoria";
+            this.lblFiltroCategoria.Size = new System.Drawing.Size(69, 17);
+            this.lblFiltroCategoria.TabIndex = 16;
+            this.lblFiltroCategoria.Text = "Categoria";
+            // 
+            // lblFiltroMarca
+            // 
+            this.lblFiltroMarca.AutoSize = true;
+            this.lblFiltroMarca.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblFiltroMarca.Location = new System.Drawing.Point(503, 46);
+            this.lblFiltroMarca.Name = "lblFiltroMarca";
+            this.lblFiltroMarca.Size = new System.Drawing.Size(47, 17);
+            this.lblFiltroMarca.TabIndex = 17;
+            this.lblFiltroMarca.Text = "Marca";
+            // 
+            // cboFiltroMarca
+            // 
+            this.cboFiltroMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFiltroMarca.FormattingEnabled = true;
+            this.cboFiltroMarca.Location = new System.Drawing.Point(468, 66);
+            this.cboFiltroMarca.Name = "cboFiltroMarca";
+            this.cboFiltroMarca.Size = new System.Drawing.Size(121, 21);
+            this.cboFiltroMarca.TabIndex = 18;
+            // 
+            // cboFiltroCriterio
+            // 
+            this.cboFiltroCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFiltroCriterio.FormattingEnabled = true;
+            this.cboFiltroCriterio.Location = new System.Drawing.Point(611, 66);
+            this.cboFiltroCriterio.Name = "cboFiltroCriterio";
+            this.cboFiltroCriterio.Size = new System.Drawing.Size(121, 21);
+            this.cboFiltroCriterio.TabIndex = 20;
+            // 
+            // lblFiltroCriterio
+            // 
+            this.lblFiltroCriterio.AutoSize = true;
+            this.lblFiltroCriterio.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblFiltroCriterio.Location = new System.Drawing.Point(642, 46);
+            this.lblFiltroCriterio.Name = "lblFiltroCriterio";
+            this.lblFiltroCriterio.Size = new System.Drawing.Size(52, 17);
+            this.lblFiltroCriterio.TabIndex = 19;
+            this.lblFiltroCriterio.Text = "Criterio";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.label3.Location = new System.Drawing.Point(70, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 17);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Filtro Rapido:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.label4.Location = new System.Drawing.Point(476, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(104, 17);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Filtro Avanzado:";
             // 
             // frmVentanaPrincipal
             // 
@@ -207,6 +294,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1114, 531);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cboFiltroCriterio);
+            this.Controls.Add(this.lblFiltroCriterio);
+            this.Controls.Add(this.cboFiltroMarca);
+            this.Controls.Add(this.lblFiltroMarca);
+            this.Controls.Add(this.lblFiltroCategoria);
+            this.Controls.Add(this.cboFiltroCategoria);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -255,5 +350,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.ComboBox cboFiltroCategoria;
+        private System.Windows.Forms.Label lblFiltroCategoria;
+        private System.Windows.Forms.Label lblFiltroMarca;
+        private System.Windows.Forms.ComboBox cboFiltroMarca;
+        private System.Windows.Forms.ComboBox cboFiltroCriterio;
+        private System.Windows.Forms.Label lblFiltroCriterio;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
