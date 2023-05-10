@@ -91,6 +91,7 @@
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(121, 20);
             this.txtUrl.TabIndex = 6;
+            this.txtUrl.TextChanged += new System.EventHandler(this.txtUrl_TextChanged);
             this.txtUrl.Leave += new System.EventHandler(this.txtUrl_Leave);
             // 
             // btnCargarImg
