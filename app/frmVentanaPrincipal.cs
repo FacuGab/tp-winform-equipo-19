@@ -27,9 +27,8 @@ namespace app
         {
             negocio = new NegocioArticulo();
             ListaArticulos = negocio.Leer();
-            dgvPanel.DataSource = ListaArticulos;
-            ocultarColumnas();
-            CargarImg(ListaArticulos[0].UrlImagen);
+            ListaArticulos = filtrarDuplicado();
+            CargarTabla(ListaArticulos);
 
             //Carga de filtros
             cboFiltroMarca.DataSource = negocio.LeerMarcas();
@@ -52,13 +51,14 @@ namespace app
             dgvPanel.Columns["id"].Visible = false;
         }
 
-        //TODO: EVENTOS frmVentanaPrincipal
+        //TODO: EVENTOS de frmVentanaPrincipal
         //TODO: BOTON ACTUALIZAR
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             negocio = new NegocioArticulo();
-            dgvPanel.DataSource = negocio.Leer();
-            CargarImg( ((Articulo)dgvPanel.CurrentRow.DataBoundItem).UrlImagen );
+            ListaArticulos = negocio.Leer();
+            ListaArticulos = filtrarDuplicado();
+            CargarTabla(ListaArticulos);
         }
         //TODO: BOTON AGREGAR
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -78,9 +78,16 @@ namespace app
         //TODO: BOTON EDITAR
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            Articulo art = (Articulo)dgvPanel.CurrentRow.DataBoundItem;
-            frmAgregarArt frmAgregarArt = new frmAgregarArt(art);
-            frmAgregarArt.ShowDialog();   
+            try
+            {
+                Articulo art = (Articulo)dgvPanel.CurrentRow.DataBoundItem;
+                frmAgregarArt frmAgregarArt = new frmAgregarArt(art);
+                frmAgregarArt.ShowDialog();   
+            }
+            catch
+            {
+                MessageBox.Show("Tienes que selecionar un articulo");
+            }
         }
         //TODO: BOTON ELEMINAR
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -94,7 +101,9 @@ namespace app
                 {
                     if (negocio.Eliminar(seleccionado.id) > 0)
                         MessageBox.Show("Artículo eliminado exitosamente!");
-                        dgvPanel.DataSource = negocio.Leer();
+                    ListaArticulos = negocio.Leer();
+                    ListaArticulos = filtrarDuplicado();
+                    CargarTabla(ListaArticulos);
                 }
                 else
                 {
@@ -180,6 +189,27 @@ namespace app
                 string urlimg = ((Articulo)dgvPanel.CurrentRow.DataBoundItem).UrlImagen;
                 CargarImg(urlimg);
                 ocultarColumnas();
+            }
+        }
+        //TODO: Filtrar articulos duplicados
+        private List<Articulo> filtrarDuplicado()
+        {
+            try
+            {
+                List<Articulo> ls = new List<Articulo>(ListaArticulos);
+                for (int i = 0; i < ls.Count; i++)
+                {
+                    if(i > 0)
+                    {
+                        if (ls[i].id == ls[i - 1].id)
+                            ls.Remove(ls[i]);
+                    }
+                }
+                return ls;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

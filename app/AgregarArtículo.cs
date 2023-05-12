@@ -192,7 +192,7 @@ namespace app
                 MessageBox.Show(msj);
                 return false;
             }
-            if( !txtPrecio.Text.All(x => char.IsNumber(x)) )
+            if( !txtPrecio.Text.All(x => char.IsNumber(x) || char.IsDigit(x) || char.IsPunctuation(x)) )
             {
                 msj = "El precio esta mal ingresado";
                 MessageBox.Show(msj);
