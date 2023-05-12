@@ -81,6 +81,7 @@
             this.Controls.Add(this.lblFiltro);
             this.Controls.Add(this.dgvLista);
             this.Name = "frmListado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Listado de Articulos";
             this.Load += new System.EventHandler(this.frmListado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).EndInit();

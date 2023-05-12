@@ -78,14 +78,13 @@ namespace app
             try 
             {
                 if(articulo == null)
-                {
                     articulo = new Articulo();
-                }
+
                 if (!validarInputs(articulo))
                     return;
+
                 articulo.categoria = (Categoria)cboCategoria.SelectedItem;
                 articulo.marca = (Marca)cboMarca.SelectedItem;
-                
                 if(articulo.id != 0) //SI ES UN ARTICULO 'YA EXISTENTE'
                 {
                     resFichero = guardarImgFichero(file); // 0 si guardo, 1 si la ruta ya existe, 2 si solo se guarda una url en la BD
@@ -123,6 +122,7 @@ namespace app
                         return;
                     }
                 }
+
                 confirmacion(resArt, resImg);
 
             }
@@ -131,6 +131,21 @@ namespace app
                 MessageBox.Show(ex.ToString());
             }
             
+        }
+        //TODO: Validacion URL
+        public bool ValidarUrl(string url)
+        {
+            if (Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult) &&
+                (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+            {
+                // La URL es válida
+                return true;
+            }
+            else
+            {
+                // La URL no es válida
+                return false;
+            }
         }
         //TODO: METODO Validar Entradas
         private bool validarInputs(Articulo articulo)
@@ -183,6 +198,11 @@ namespace app
                 MessageBox.Show(msj);
                 return false;
             }
+            if (!ValidarUrl(txtUrl.Text))
+            {
+                MessageBox.Show("URL Inválido, intente nuevamente.");
+                return false;
+            }
 
             articulo.nombre = txtNombre.Text;
             articulo.codigo = txtCodArt.Text;
@@ -191,7 +211,7 @@ namespace app
             articulo.precio = decimal.Parse(txtPrecio.Text);
             return true;
         }
-        //TODO: EVEMTO IMAGEN EN CARGA DE ARTICULO
+        //TODO: EVENTO IMAGEN EN CARGA DE ARTICULO
         private void txtUrl_Leave(object sender, EventArgs e)
         {
             cargarImg(txtUrl.Text);
@@ -228,8 +248,6 @@ namespace app
                 cargarImg("https://images.wondershare.com/repairit/aticle/2021/07/resolve-images-not-showing-problem-1.jpg");
                 MessageBox.Show("Se requiere reemplazar la imágen");
             }
-
-            // Hay que ver como hacer que los cbo carguen con la categoria y marca correcta ...
 
         }
         //TODO: METODO CARGAR IMG desde fichero
@@ -301,5 +319,9 @@ namespace app
             }
         }
 
+        private void txtUrl_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }//Fin
 }
