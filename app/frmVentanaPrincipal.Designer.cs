@@ -248,6 +248,7 @@
             this.cboFiltroMarca.Name = "cboFiltroMarca";
             this.cboFiltroMarca.Size = new System.Drawing.Size(121, 21);
             this.cboFiltroMarca.TabIndex = 18;
+            this.cboFiltroMarca.SelectedIndexChanged += new System.EventHandler(this.cboFiltroMarca_SelectedIndexChanged);
             // 
             // cboFiltroCriterio
             // 

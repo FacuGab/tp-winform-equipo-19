@@ -57,5 +57,10 @@ namespace app
             frmListado.MdiParent = this;
             frmListado.Show();
         }
+
+        private void frmMenuPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }//Fin
 }

@@ -213,5 +213,9 @@ namespace app
             }
         }
 
+        private void cboFiltroMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }//Fin
 }
