@@ -47,5 +47,10 @@ namespace app
         {
             Close();
         }
+
+        private void dgvListadoPrincipal_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

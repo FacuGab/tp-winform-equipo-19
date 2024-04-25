@@ -42,6 +42,7 @@
             this.dgvLista.Name = "dgvLista";
             this.dgvLista.Size = new System.Drawing.Size(776, 392);
             this.dgvLista.TabIndex = 0;
+            this.dgvLista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_CellContentClick);
             // 
             // lblFiltro
             // 

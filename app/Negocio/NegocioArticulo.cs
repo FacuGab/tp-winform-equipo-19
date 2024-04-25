@@ -46,11 +46,11 @@ namespace Negocio
                     artAux.descripicion = lector["Descripcion"].ToString();
 
                     artAux.marca = new Marca(lector["Marca"].ToString());
-                    artAux.marca.idMarca = (int)lector["IdMarca"];
+                    artAux.marca.idMarca = Convert.ToInt32(lector["IdMarca"]);
                     artAux.marca.marca = lector["Marca"].ToString();
 
                     artAux.categoria = new Categoria(lector["Categoria"].ToString());
-                    artAux.categoria.idCategoria = (int)lector["IdCategoria"];
+                    artAux.categoria.idCategoria = Convert.ToInt32(lector["IdMarca"]);
                     artAux.categoria.categoria = lector["Categoria"].ToString();
 
                     artAux.precio = Convert.ToDecimal(lector["Precio"]);

@@ -22,3 +22,9 @@ C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\AccesoDatos
 C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\AccesoDatos\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
 C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\AccesoDatos\obj\Debug\AccesoDatos.dll
 C:\Users\Manu\Desktop\TrabajoPracticoProgra\tp-winform-equipo-19\app\AccesoDatos\obj\Debug\AccesoDatos.pdb
+C:\Users\Manu\Desktop\tp-winform-equipo-19\app\AccesoDatos\bin\Debug\AccesoDatos.dll
+C:\Users\Manu\Desktop\tp-winform-equipo-19\app\AccesoDatos\bin\Debug\AccesoDatos.pdb
+C:\Users\Manu\Desktop\tp-winform-equipo-19\app\AccesoDatos\obj\Debug\AccesoDatos.csproj.AssemblyReference.cache
+C:\Users\Manu\Desktop\tp-winform-equipo-19\app\AccesoDatos\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
+C:\Users\Manu\Desktop\tp-winform-equipo-19\app\AccesoDatos\obj\Debug\AccesoDatos.dll
+C:\Users\Manu\Desktop\tp-winform-equipo-19\app\AccesoDatos\obj\Debug\AccesoDatos.pdb

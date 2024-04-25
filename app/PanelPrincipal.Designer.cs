@@ -47,6 +47,7 @@
             this.dgvListadoPrincipal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListadoPrincipal.Size = new System.Drawing.Size(754, 350);
             this.dgvListadoPrincipal.TabIndex = 1;
+            this.dgvListadoPrincipal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListadoPrincipal_CellContentClick);
             // 
             // pbxArticuloPanelPrincipal
             // 
